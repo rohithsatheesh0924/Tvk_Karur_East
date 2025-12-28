@@ -59,7 +59,7 @@ const ContactSection = () => {
                     <MessageCircle className="w-4 h-4" /> <span>WhatsApp (24x7)</span>
                   </p>
                   <a 
-                    href="https://wa.me/9750565041"
+                    href="https://wa.me/919750565041"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-3xl font-black bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent hover:from-green-600 hover:to-green-700 transition-all group-hover:translate-x-2 block"
