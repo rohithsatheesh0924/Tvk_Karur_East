@@ -192,7 +192,7 @@ const Vision = () => {
   {/* Image Container with precise inset from the gradient border */}
   <div className="absolute inset-1 rounded-full overflow-hidden z-0 bg-white">
     <img
-      src="/images/leader.jpg" // 🔹 Replace with your actual image path (e.g., districtSecImg)
+      src="./vijay.jpeg" // 🔹 Replace with your actual image path (e.g., districtSecImg)
       alt="Hon'ble Chief Minister & TVK President"
       className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
       draggable="false"

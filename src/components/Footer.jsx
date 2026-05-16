@@ -1,6 +1,7 @@
 import React from "react";
 import { Phone, Mail, MessageSquare, MapPin, ShieldCheck } from "lucide-react";
 import tvkLogo from "../assets/Logo.jpeg";
+import vijay from "../assets/vijay.jpeg";
 
 const Footer = () => {
   return (
@@ -18,7 +19,7 @@ const Footer = () => {
             <div className="flex items-center gap-3">
               <div className="h-12 w-12 rounded-xl p-[1px] bg-gradient-to-tr from-[#c8102e] to-[#f05a28] shadow-xl flex-shrink-0 overflow-hidden">
                 <img
-                  src={tvkLogo}
+                  src={vijay}
                   alt="TVK Logo"
                   className="h-full w-full object-cover rounded-xl bg-[#0a0203]"
                   draggable="false"
@@ -89,7 +90,7 @@ const Footer = () => {
                 <MapPin className="w-4 h-4 text-[#f05a28] mt-0.5 flex-shrink-0" />
                 <div className="space-y-1">
                   <h5 className="text-xs font-black text-gray-200">கரூர் மேற்கு மாவட்டம்</h5>
-                  <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Eastern Part Regional Office</p>
+                  <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Karur West District - TVK</p>
                 </div>
               </div>
               <p className="text-[11px] text-gray-500 leading-relaxed border-t border-white/5 pt-2 flex items-center gap-1.5 font-medium">

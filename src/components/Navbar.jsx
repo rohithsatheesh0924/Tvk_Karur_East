@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import tvkLogo from "../assets/Logo.jpeg";
+import vijay from "../assets/vijay.jpeg";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3 min-w-0 flex-shrink-0">
             <div className="h-11 w-11 rounded-full p-[1.5px] bg-gradient-to-tr from-[#c8102e] via-[#ffd60a] to-[#f05a28] shadow-lg flex-shrink-0 overflow-hidden">
               <img
-                src={tvkLogo}
+                src={vijay}
                 alt="TVK Logo"
                 className="h-full w-full object-cover rounded-full bg-[#0f0203]"
                 draggable="false"

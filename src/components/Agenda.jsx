@@ -227,7 +227,7 @@ const Agenda = () => {
             <div className="absolute inset-0.5 rounded-full bg-[#0a0203] opacity-10 z-10" />
             <div className="absolute inset-1 rounded-full overflow-hidden z-0 bg-white">
               <img
-                src="/images/leader.jpg"
+                src="./vijay.jpeg"
                 alt="Hon'ble Chief Minister & TVK President"
                 className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 draggable="false"
