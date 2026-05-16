@@ -1,146 +1,233 @@
 import React from "react";
 
 const Vision = () => {
-  return (
-    <section className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-white to-yellow-50/30 py-16 sm:py-20 lg:py-28 relative overflow-hidden">
-      {/* Premium Background Elements - Responsive */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-r from-red-200/40 to-yellow-200/40 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-l from-yellow-200/30 to-red-200/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+  const corePrinciples = [
+    {
+      icon: "⚖️",
+      titleTa: "சமூக நீதி",
+      titleEn: "Social Justice",
+      descTa: "அம்பேத்கர், பெரியார் சிந்தனைகளின் அடிப்படையில் விகிதாச்சார இட ஒதுக்கீடு. சாதி, மதம், பாலின பேதமின்றி அனைவருக்கும் சம வாய்ப்பு.",
+      descEn: "Proportional reservation based on the ideals of Ambedkar and Periyar. Equal opportunities for all regardless of caste, creed, or gender.",
+      accent: "border-red-100"
+    },
+    {
+      icon: "🕌",
+      titleTa: "சமயச்சார்பின்மை",
+      titleEn: "Secularism",
+      descTa: "அனைத்து மதங்களையும் மதித்தல். மத வெறி மற்றும் பிரிவினைவாத சக்திகளுக்கு எதிரான சமரசமற்ற நிலைப்பாடு. ஜனநாயக உரிமைகள் பாதுகாப்பு.",
+      descEn: "Respecting all faiths equally. An uncompromising stance against communalism and divisive forces while fiercely safeguarding democratic rights.",
+      accent: "border-orange-100"
+    },
+    {
+      icon: "📚",
+      titleTa: "மொழிக் கொள்கை & கல்வி",
+      titleEn: "Language Policy & Education",
+      descTa: "இரு மொழிக் கொள்கை (தமிழ் + ஆங்கிலம்). தமிழ் மொழி பாதுகாப்புடன் உலகமயமாக்கல் வாய்ப்புகள். நீட் தேர்வு ரத்து மற்றும் இலவச கல்வி.",
+      descEn: "Two-language policy (Tamil + English) balancing cultural heritage preservation with global opportunities. Anti-NEET stance and free quality education.",
+      accent: "border-amber-100"
+    }
+  ];
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Professional Hero Header - Responsive */}
-        <div className="text-center mb-12 sm:mb-16 lg:mb-24">
-          <div className="inline-flex items-center px-4 sm:px-6 py-2.5 sm:py-3 bg-white/90 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-xl border border-red-200/60 mb-4 sm:mb-6 lg:mb-8">
-            <span className="text-base sm:text-lg lg:text-xl font-black bg-gradient-to-r from-red-600 via-red-500 to-yellow-500 bg-clip-text text-transparent tracking-wide uppercase">
-              தவெகக் கொள்கை & விளக்கம்
+  const corePillars = [
+    { ta: "விகிதாச்சார இட ஒதுக்கீடு", en: "Proportional Reservation" },
+    { ta: "இரு மொழிக் கொள்கை (தமிழ் + ஆங்கிலம்)", en: "Two-Language Policy (Tamil + English)" },
+    { ta: "போதை இல்லா தமிழ்நாடு", en: "Drug-Free Tamil Nadu" },
+    { ta: "மாநில தன்னாட்சி", en: "State Autonomy & Rights" },
+    { ta: "இளையோர் ஆற்றல் & வேலைவாய்ப்பு", en: "Youth Empowerment & Employment" }
+  ];
+
+  return (
+    <section className="relative w-full bg-gradient-to-b from-[#fefbf9] via-[#fef6f1] to-[#fcf0e7] py-20 md:py-28 border-t border-b border-orange-100/60 overflow-hidden">
+      {/* Structural Blueprint Grid Background for Elite Aesthetic */}
+      <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:30px_30px]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* SECTION HEADER: Ideology & Doctrine */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#c8102e]/5 to-[#f05a28]/5 border border-orange-200/40 backdrop-blur-sm mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c8102e]" />
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#c8102e]">
+              தவெகக் கொள்கை & விளக்கம் / TVK Ideology & Doctrine
             </span>
           </div>
           
-          <div className="inline-flex items-center px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-red-50/90 to-yellow-50/90 backdrop-blur-sm rounded-lg sm:rounded-xl border border-red-200/70 mb-4 sm:mb-6 lg:mb-8 shadow-md max-w-full sm:max-w-2xl mx-auto">
-            <span className="text-xs sm:text-sm lg:text-base font-bold text-red-700 tracking-wide text-center sm:text-left">
-              சமூக நீதி | சமயச்சார்பின்மை | சமத்துவம்
+          {/* Proclaimers Badge */}
+          <div className="block mt-2 mb-6 text-xs sm:text-sm font-black uppercase text-gray-500 tracking-wider">
+            சமூக நீதி <span className="text-orange-300 mx-1">|</span> சமயச்சார்பின்மை <span className="text-orange-300 mx-1">|</span> சமத்துவம்
+            <span className="block md:inline md:ml-2 text-gray-400 font-medium tracking-normal lowercase">
+              (Social Justice • Secularism • Equality)
             </span>
           </div>
-          
-          <blockquote className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black bg-gradient-to-r from-gray-900 via-red-700 to-yellow-500 bg-clip-text text-transparent leading-tight mb-2 sm:mb-4 lg:mb-6">
-            "பிறப்பொக்கும் எல்லா உயிர்க்கும்"
-          </blockquote>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 font-light italic">
-            — <span className="font-black text-red-600">திருக்குறள்</span>
-          </p>
+
+          {/* Central Ideology Quote */}
+          <div className="max-w-3xl mx-auto mt-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight leading-tight mb-2">
+              "பிறப்பொக்கும் எல்லா உயிர்க்கும்"
+            </h2>
+            <h4 className="text-sm sm:text-base text-gray-400 font-bold tracking-wider uppercase italic">
+              "All living beings are equal by birth"
+            </h4>
+            <p className="text-xs sm:text-sm text-[#c8102e] font-black tracking-widest uppercase mt-3">
+              — திருக்குறள் / The Thirukkural
+            </p>
+          </div>
+          <div className="w-12 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28] mx-auto mt-8 rounded-full" />
         </div>
 
-        {/* Core Principles Grid - Responsive */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 lg:mb-20">
-          {[
-            {
-              icon: "⚖️",
-              title: "சமூக நீதி",
-              desc: "அம்பேத்கர், பெரியார் சிந்தனைகளின் அடிப்படையில் விகிதாச்சார இட ஒதுக்கீடு. சாதி, மதம், பாலின பேதமின்றி அனைவருக்கும் சம வாய்ப்பு.",
-              color: "from-red-500 to-red-600",
-              textColor: "text-red-600"
-            },
-            {
-              icon: "🕌",
-              title: "சமயச்சார்பின்மை",
-              desc: "அனைத்து மதங்களையும் மதித்தல். மத வெறி, பிரிவினைக்கு எதிராக நிலைப்பாடு. ஜனநாயக உரிமைகளைப் பாதுகாப்போம்.",
-              color: "from-yellow-500 to-yellow-600",
-              textColor: "text-yellow-700"
-            },
-            {
-              icon: "🌱",
-              title: "இரு மொழிக் கொள்கை",
-              desc: "தமிழ் மற்றும் ஆங்கிலம் - தமிழ் மொழி பாதுகாப்பு + உலகமயமாக்கல். NEET ரத்து, இலவச கல்வி, விவசாயிகளுக்கான மானியங்கள்.",
-              color: "from-red-500 to-yellow-500",
-              textColor: "text-red-600"
-            }
-          ].map((principle, index) => (
+        {/* THREE CORE PRINCIPLES GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20">
+          {corePrinciples.map((principle, index) => (
             <div 
-              key={principle.title}
-              className="group bg-white/90 backdrop-blur-2xl rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/50 shadow-lg sm:shadow-xl hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-500 hover:border-red-200/70 cursor-pointer h-full flex flex-col"
+              key={index}
+              className={`bg-white rounded-2xl p-6 border ${principle.accent} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group relative`}
             >
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${principle.color} bg-gradient-to-br rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl lg:text-3xl font-black text-white mx-auto mb-3 sm:mb-5 lg:mb-6 shadow-lg sm:shadow-xl group-hover:scale-105 sm:group-hover:scale-110 transition-all duration-500 group-hover:rotate-3 flex-shrink-0`}>
-                {principle.icon}
+              <div>
+                {/* Minimalist Professional Floating Icon Frame */}
+                <div className="w-12 h-12 rounded-xl bg-orange-50/60 border border-orange-100 flex items-center justify-center text-xl mb-5 shadow-inner group-hover:scale-105 transition-transform">
+                  {principle.icon}
+                </div>
+                
+                {/* Title Segment */}
+                <div className="space-y-0.5 mb-4">
+                  <h5 className="text-lg font-black text-gray-900 group-hover:text-[#c8102e] transition-colors">
+                    {principle.titleTa}
+                  </h5>
+                  <h6 className="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                    {principle.titleEn}
+                  </h6>
+                </div>
+
+                {/* Description Segment */}
+                <div className="space-y-3 pt-2 border-t border-gray-50">
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
+                    {principle.descTa}
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-gray-400 leading-relaxed italic block border-t border-dashed border-gray-100 pt-2">
+                    {principle.descEn}
+                  </p>
+                </div>
               </div>
-              <h3 className={`text-lg sm:text-xl lg:text-2xl font-black text-gray-900 text-center mb-3 sm:mb-4 lg:mb-5 group-hover:${principle.textColor} transition-all duration-500 leading-tight flex-grow`}>
-                {principle.title}
-              </h3>
-              <p className="text-gray-700 leading-relaxed text-center text-xs sm:text-sm lg:text-base opacity-90 group-hover:opacity-100 transition-opacity flex-grow mt-auto">
-                {principle.desc}
-              </p>
             </div>
           ))}
         </div>
 
-        {/* Main Vision Statement - Responsive */}
-        <div className="bg-white/80 backdrop-blur-2xl rounded-xl sm:rounded-2xl lg:rounded-3xl p-6 sm:p-8 lg:p-12 border-2 border-red-200/50 shadow-xl sm:shadow-2xl mx-auto max-w-4xl lg:max-w-5xl">
-          <div className="text-center mb-8 sm:mb-10 lg:mb-14">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-black bg-gradient-to-r from-gray-900 via-red-700 to-yellow-500 bg-clip-text text-transparent mb-3 sm:mb-4 lg:mb-6 leading-tight">
-              தவெகக் குறிக்கோள்
-            </h2>
-            <div className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-red-50 to-yellow-50 rounded-lg sm:rounded-2xl border-2 border-red-200/60 shadow-lg max-w-full sm:max-w-2xl mx-auto">
-              <span className="text-base sm:text-lg lg:text-xl font-black text-red-700 text-center sm:text-left">மாநில தன்னாட்சி</span>
-              <span className="w-px h-5 sm:h-6 bg-red-300/50 hidden sm:block"></span>
-              <span className="text-base sm:text-lg lg:text-xl font-black text-yellow-700 text-center">போதை இல்லா தமிழகம்</span>
-              <span className="w-px h-5 sm:h-6 bg-yellow-300/50 hidden sm:block"></span>
-              <span className="text-base sm:text-lg lg:text-xl font-black text-red-700 text-center sm:text-left">சமநிலை சமூகம்</span>
+        {/* PRIMARY TARGET MANIFESTO SEGMENT */}
+        <div className="bg-white rounded-3xl p-6 md:p-10 lg:p-12 border border-orange-200/30 shadow-sm relative overflow-hidden max-w-6xl mx-auto">
+          <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28]" />
+          
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">
+              கழகக் குறிக்கோள் / Core Objectives
+            </h3>
+            
+            {/* Horizontal Blueprint Tags */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-[10px] sm:text-xs font-black uppercase tracking-wider text-gray-600">
+              <span className="px-3 py-1 rounded bg-gray-50 border border-gray-100">மாநில தன்னாட்சி / State Autonomy</span>
+              <span className="px-3 py-1 rounded bg-gray-50 border border-gray-100">போதை இல்லா தமிழகம் / Drug-Free TN</span>
+              <span className="px-3 py-1 rounded bg-gray-50 border border-gray-100">சமநிலை சமூகம் / Egalitarian Society</span>
             </div>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
-            {/* Quote */}
-            <div className="order-2 lg:order-1">
-              <blockquote className="text-sm sm:text-base lg:text-xl xl:text-2xl font-black text-gray-800 leading-tight border-l-4 sm:border-l-6 border-red-500 pl-4 sm:pl-6 lg:pl-8 py-4 sm:py-6 lg:py-8 italic bg-gradient-to-r from-red-50/60 to-transparent rounded-r-lg sm:rounded-r-2xl">
-                "தமிழ்நாட்டில் வாழும் அனைத்து மக்களின் தனிமனித, சமூக, 
-                அரசியல், பொருளாதார உரிமைகளை நிலைநிறுத்தி 
-                எல்லோருக்கும் எல்லாமுமான சமநிலை சமூகத்தை உருவாக்குவது"
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            
+            {/* Left Block: Direct Declarative Policy Quote */}
+            <div className="lg:col-span-6 space-y-4">
+              <blockquote className="text-base sm:text-lg md:text-xl font-black text-gray-800 leading-relaxed border-l-4 border-[#c8102e] pl-5 py-2 italic bg-gradient-to-r from-red-50/30 to-transparent rounded-r-xl">
+                "தமிழ்நாட்டில் வாழும் அனைத்து மக்களின் தனிமனித, சமூக, அரசியல், பொருளாதார உரிமைகளை நிலைநிறுத்தி எல்லோருக்கும் எல்லாமுமான சமநிலை சமூகத்தை உருவாக்குவது."
               </blockquote>
-              <div className="text-right mt-4 sm:mt-6 lg:mt-8">
-                <p className="text-sm sm:text-base lg:text-lg font-bold text-gray-600">
-                  — தவெக அதிகாரப்பூர்வ அறிக்கை
+              <div className="text-left pl-5">
+                <p className="text-xs font-black text-gray-900 uppercase tracking-wider">
+                  — தவெக அதிகாரப்பூர்வ கொள்கை அறிக்கை
+                </p>
+                <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mt-0.5">
+                  Official TVK Policy Declaration Statement
                 </p>
               </div>
+              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed italic pt-4 border-t border-gray-100 block">
+                "To strictly preserve individual, social, political, and economic rights for every citizen within Tamil Nadu, creating an egalitarian social structure where everything is accessible to everyone."
+              </p>
             </div>
-            
-            {/* Key Pillars */}
-            <div className="order-1 lg:order-2">
-              <h4 className="text-lg sm:text-xl lg:text-2xl font-black text-gray-900 mb-4 sm:mb-6 lg:mb-8 text-left">முக்கியக் கொள்கைகள்</h4>
-              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
-                {[
-                  "விகிதாச்சார இட ஒதுக்கீடு",
-                  "இரு மொழிக் கொள்கை (தமிழ் + ஆங்கிலம்)",
-                  "போதை இல்லா தமிழ்நாடு",
-                  "மாநில தன்னாட்சி",
-                  "இளைஞர் வலிமை & வேலைவாய்ப்பு"
-                ].map((pillar, index) => (
-                  <div key={pillar} className="group flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-gradient-to-r from-red-50/70 to-yellow-50/70 rounded-lg sm:rounded-xl border-l-4 border-red-400 hover:border-red-500 hover:shadow-md sm:hover:shadow-lg transition-all duration-400 hover:-translate-x-2">
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm flex-shrink-0 mt-0.5 group-hover:scale-105 sm:group-hover:scale-110 transition-transform">
+
+            {/* Right Block: Systematic High-Density Framework Lists */}
+            <div className="lg:col-span-6 space-y-4">
+              <h4 className="text-xs font-black uppercase text-gray-400 tracking-widest mb-2">
+                முக்கியக் கொள்கை வரைவு / Policy Framework
+              </h4>
+              <div className="space-y-2">
+                {corePillars.map((pillar, index) => (
+                  <div 
+                    key={index} 
+                    className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#fdfbf9] to-[#fef6f1] rounded-xl border-l-2 border-orange-300 hover:border-[#c8102e] hover:shadow-md transition-all duration-300 group"
+                  >
+                    <div className="w-5 h-5 rounded bg-gray-900 text-white font-black text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">
                       {index + 1}
                     </div>
-                    <span className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 leading-relaxed group-hover:text-red-600 transition-colors flex-grow">
-                      {pillar}
-                    </span>
+                    <div className="space-y-0.5">
+                      <span className="text-sm font-black text-gray-800 block leading-tight group-hover:text-[#c8102e] transition-colors">
+                        {pillar.ta}
+                      </span>
+                      <span className="text-[11px] font-bold text-gray-400 block leading-none tracking-wide">
+                        {pillar.en}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
+
           </div>
         </div>
 
-        {/* Founder Quote - Responsive */}
-        <div className="text-center mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-12 lg:pt-16 border-t-2 border-red-200/60 rounded-xl sm:rounded-2xl bg-white/70 backdrop-blur-xl max-w-2xl sm:max-w-3xl mx-auto">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-xl sm:text-2xl lg:text-3xl font-black text-white mx-auto mb-4 sm:mb-6 lg:mb-8 shadow-xl ring-4 ring-white/60">
-            TV
-          </div>
-          <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-black bg-gradient-to-r from-red-600 to-yellow-500 bg-clip-text text-transparent mb-2 sm:mb-4 lg:mb-6 leading-tight">
-            "ஜனநாயகப் போர் - மக்களுக்கான வெற்றி"
-          </p>
-          <p className="text-base sm:text-lg lg:text-xl font-bold text-gray-700 tracking-wide">
-            தளபதி விஜய் — தவெக நிறுவனர்
-          </p>
-        </div>
+       {/* EXECUTIVE FOUNDER & CHIEF MINISTER DECK */}
+<div className="text-center mt-24 pt-16 border-t border-orange-100 max-w-3xl mx-auto relative">
+  {/* Elegant Background Subtle Halo for High-Class Leadership Presence */}
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-gradient-to-b from-[#c8102e]/5 to-transparent rounded-full blur-2xl pointer-events-none" />
+
+  {/* Prestigious Executive Leadership Badge Component with Image */}
+<div className="relative w-20 h-20 bg-gradient-to-tr from-[#c8102e] via-[#ffd60a] to-[#f05a28] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl ring-4 ring-white transition-transform duration-500 hover:scale-105 overflow-hidden group">
+  {/* Subtle depth overlay to make the image pop against the gradient ring */}
+  <div className="absolute inset-0.5 rounded-full bg-[#0a0203] opacity-10 z-10" />
+
+  {/* Image Container with precise inset from the gradient border */}
+  <div className="absolute inset-1 rounded-full overflow-hidden z-0 bg-white">
+    <img
+      src="/images/leader.jpg" // 🔹 Replace with your actual image path (e.g., districtSecImg)
+      alt="Hon'ble Chief Minister & TVK President"
+      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+      draggable="false"
+    />
+  </div>
+</div>
+
+  {/* Central Creed Proclamation */}
+  <h4 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent tracking-tight leading-tight">
+    "ஜனநாயகப் போர் - மக்களுக்கான வெற்றி"
+  </h4>
+  <h5 className="text-xs sm:text-sm text-gray-400 font-bold uppercase tracking-widest mt-1.5 opacity-80">
+    "Democratic Warfare — Victory for the People"
+  </h5>
+
+  {/* High-Density Administrative Governance Credentials */}
+  <div className="mt-8 space-y-2">
+    {/* Full Name Signature Render */}
+    <p className="text-lg md:text-xl font-black text-gray-900 tracking-wide">
+      தளபதி விஜய்
+    </p>
+
+    {/* Dual-Language Executive Credentials Panel */}
+    <div className="inline-flex flex-col items-center gap-1 px-6 py-3 bg-white border border-orange-200/50 rounded-2xl shadow-sm max-w-xl mx-auto">
+      <span className="text-xs sm:text-sm font-black text-[#c8102e] tracking-wide text-center">
+        மாண்புமிகு தமிழக முதலமைச்சர் & தவெக தலைவர்
+      </span>
+      <div className="w-12 h-px bg-orange-100 my-0.5" />
+      <span className="text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-widest text-center">
+        Hon'ble Chief Minister of Tamil Nadu & President, TVK
+      </span>
+    </div>
+  </div>
+</div>
+
       </div>
     </section>
   );

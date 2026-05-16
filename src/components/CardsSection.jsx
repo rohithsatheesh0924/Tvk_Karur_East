@@ -1,69 +1,199 @@
 import React from "react";
 
-const cards = [
-  {
-    title: "நீங்கள் இணைந்து கொள்ளுங்கள்",
-    desc: "தமிழக வெற்றிக் கழகத்தில் உறுப்பினராக இணைந்து கொள்ளுங்கள். TVK-வின் வெற்றி பயணத்தில் சேருங்கள்!",
-    icon: "✊",
-    accent: "bg-gradient-to-r from-red-500/10 to-yellow-500/10 border-red-200 text-red-700",
-    link: "https://tvk.family/" // Replace with actual join link
-  },
-  {
-    title: "மாற்றப்பட்ட வாக்காளர் பட்டியல் (SIR)",
-    desc: "உங்கள் பகுதியின் மாற்றப்பட்ட வாக்காளர் பட்டியலை இங்கே சரிபார்க்கவும். உங்கள் வாக்குரிமை உறுதி செய்யுங்கள்.",
-    icon: "📋",
-    accent: "bg-gradient-to-r from-yellow-500/10 to-red-500/10 border-yellow-200 text-yellow-700",
-    link: "https://electoralsearch.eci.gov.in/" // Official voter list site
-  },
-  {
-  title: "புதிய வாக்காளர் / திருத்தம்",
-  desc: "புதிய வாக்காளராக விண்ணப்பிக்கவும் அல்லது பழைய வாக்காளர் விவரங்களில் மாற்றங்களைச் செய்யவும் இங்கே தொடரவும்.",
-  icon: "🗳️",
-  accent: "bg-gradient-to-r from-red-400/10 to-yellow-400/10 border-red-100 text-red-600",
-  link: "https://voters.eci.gov.in" // Voter application & corrections site
-},
-
-];
+// Safe public directory paths - no imports required
+const districtSecImg = "/images/leader.jpg"; 
+const secretaryImg = "/images/Kishore.jpg"; 
+const jointSecImg = "/images/joint_sec.jpg"; 
+const treasurerImg = "/images/treasurer.jpg"; 
 
 const CardsSection = () => {
+  // District Secretary Contact Configuration
+  const districtSecContact = {
+    phone: "+919750565041",
+    whatsapp: "919750565041"
+  };
+
+  const officeBearers = [
+    {
+      roleTa: "செயலாளர்",
+      roleEn: "Secretary",
+      nameTa: "விஜய் கிஷோர்",
+      nameEn: "Vijay Kishore",
+      part: "Karur West, Eastern Part",
+      image: secretaryImg,
+      phone: "+919750565041",
+      whatsapp: "919750565041"
+    },
+    {
+      roleTa: "இணைச் செயலாளர்",
+      roleEn: "Joint Secretary",
+      nameTa: "[பெயர்]",
+      nameEn: "[Name Placeholder]",
+      part: "Karur West, Eastern Part",
+      image: jointSecImg,
+      phone: "+919750565041", 
+      whatsapp: "919750565041"
+    },
+    {
+      roleTa: "பொருளாளர்",
+      roleEn: "Treasurer",
+      nameTa: "[பெயர்]",
+      nameEn: "[Name Placeholder]",
+      part: "Karur West, Eastern Part",
+      image: treasurerImg,
+      phone: "+919750565041",
+      whatsapp: "919750565041"
+    },
+  ];
+
   return (
-    <section className="w-full bg-gradient-to-b from-yellow-50/50 to-red-50/30 py-16">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-600 via-red-500 to-yellow-500 bg-clip-text text-transparent mb-4">
-            TVK - உங்கள் செயல்பாடுகள்
+    <section className="relative w-full bg-gradient-to-b from-[#fefbf9] via-[#fef6f1] to-[#fcf0e7] py-20 md:py-28 border-t border-b border-orange-100/60 overflow-hidden">
+      {/* Structural Blueprint Grid Background for Elite Aesthetic */}
+      <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:30px_30px]" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#c8102e]/5 to-[#f05a28]/5 border border-orange-200/40 backdrop-blur-sm mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c8102e]" />
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#c8102e]">
+              நிர்வாகப் பொறுப்பாளர்கள் / Office Bearers
+            </span>
+          </div>
+          <h3 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight leading-none">
+            கழக நிர்வாகத் தூண்கள்
           </h3>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            இன்றே TVK-வில் இணைந்து கொள்ளுங்கள், வாக்காளர் பட்டியலை சரிபார்த்து, உங்கள் வாக்கை உறுதிசெய்யுங்கள்.
+          <p className="text-sm md:text-base text-gray-500 font-semibold tracking-widest uppercase mt-3">
+            Karur West District, Eastern Part Hierarchy
           </p>
+          <div className="w-12 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28] mx-auto mt-6 rounded-full" />
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {cards.map((card, index) => (
-            <div
-              key={card.title}
-              className={`group h-full rounded-3xl p-8 border-2 ${card.accent} bg-white/80 backdrop-blur-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:border-red-300`}
-            >
-              <div className={`text-4xl mb-6 ${index === 1 ? 'text-yellow-600' : 'text-red-600'} group-hover:scale-110 transition-transform`}>
-                {card.icon}
+        {/* ROW 1: District Secretary Core Feature (Image Left, Content Right) */}
+        <div className="w-full bg-white rounded-3xl p-6 md:p-8 border border-orange-200/30 relative overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group mb-12">
+          {/* Fine top accent line */}
+          <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28]" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            
+            {/* Left Side: Profile Image - Sized to aspect-[4/5] for absolute consistency */}
+            <div className="md:col-span-4 lg:col-span-3 flex justify-center">
+              <div className="w-full aspect-[4/5] max-w-[200px] md:max-w-none rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-orange-200/50 via-transparent to-red-200/50 border border-orange-100/50 shadow-inner relative">
+                <img
+                  src={districtSecImg}
+                  alt="District Secretary"
+                  className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500 bg-gray-50"
+                />
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition-colors">
-                {card.title}
-              </h4>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                {card.desc}
-              </p>
-              <a 
-                href={card.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-bold bg-gradient-to-r from-red-600 to-yellow-500 bg-clip-text text-transparent hover:from-red-700 hover:to-yellow-600 transition-all inline-flex items-center gap-2 group-hover:translate-x-1 hover:underline"
-              >
-                இப்போது செய்யுங்கள் <span>→</span>
-              </a>
             </div>
-          ))}
+
+            {/* Right Side: Identity Details & Content */}
+            <div className="md:col-span-8 lg:col-span-9 text-center md:text-left space-y-4">
+              <div>
+                <span className="inline-block text-[10px] font-black uppercase tracking-widest text-white bg-[#c8102e] px-2.5 py-1 rounded mb-3">
+                  மாவட்டச் செயலாளர் / District Secretary
+                </span>
+                <h4 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">V.P. மதியழகன்</h4>
+                <p className="text-xs text-gray-400 font-bold tracking-wider uppercase">V.P. Mathialagan</p>
+              </div>
+
+              
+              <div className="bg-gradient-to-r from-[#fdfbf9] to-[#fef6f1] p-4 rounded-xl border border-orange-100/40 max-w-4xl text-left">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
+                  📌 கரூர் மேற்கு மாவட்ட மக்களின் உரிமைகளை மீட்டெடுக்கவும், முறையான உள்கட்டமைப்பு மற்றும் வெளிப்படையான மக்கள் சேவை வழங்கிட முன்னின்று செயல்படுகிறார்.
+                </p>
+                <p className="text-[11px] sm:text-xs text-gray-400 leading-relaxed italic mt-2 border-t border-orange-100/40 pt-2">
+                  Leading the movement forward to ensure transparent governance and swift grievance redressal for every citizen across the region.
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+        {/* ROW 2: Executive Committee Banner Label */}
+        <div className="w-full bg-white/40 border border-orange-200/20 backdrop-blur-sm p-3 px-4 rounded-xl flex items-center justify-between mb-6">
+          <span className="text-xs font-black uppercase tracking-wider text-gray-500">
+            கழக நிர்வாகிகள் / Executive Committee
+          </span>
+          <span className="w-2 h-2 rounded-full bg-[#f05a28]/40 animate-pulse" />
+        </div>
+
+        {/* ROW 3: Tier Leadership Grid (3 Column System) - Images are completely identical in shape */}
+       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {officeBearers.map((bearer, idx) => (
+    <div 
+      key={idx} 
+      className="bg-white rounded-2xl p-4 border border-orange-200/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center flex flex-col justify-between group"
+    >
+      <div>
+        {/* Profile Image Canvas - Scaled down precisely using w-36 mx-auto */}
+        <div className="w-36 aspect-[4/5] mx-auto rounded-xl overflow-hidden mb-4 p-1 bg-gradient-to-tr from-orange-200/50 via-transparent to-red-200/50 border border-orange-100/50 shadow-inner relative">
+          <img
+            src={bearer.image}
+            alt={bearer.nameEn}
+            className="w-full h-full object-cover rounded-lg group-hover:scale-102 transition-transform duration-500 bg-gray-50"
+            onError={(e) => {
+              e.target.src = "https://via.placeholder.com/300x400?text=TVK+Leader";
+            }}
+          />
+          
+          {/* High-Density Label Strip */}
+          <div className="absolute bottom-1 inset-x-1 rounded-b-lg bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 pt-8 backdrop-blur-[1px]">
+            <span className="text-[11px] font-black text-[#ffd60a] uppercase tracking-widest block leading-none">
+              {bearer.roleTa}
+            </span>
+            <span className="text-[9px] font-bold text-gray-300 uppercase tracking-widest block mt-1 opacity-90 leading-none">
+              {bearer.roleEn}
+            </span>
+          </div>
+        </div>
+
+        {/* Typography Block */}
+        <div className="space-y-0.5 px-1 mb-3">
+          <h5 className="text-base font-black text-gray-900 group-hover:text-[#c8102e] transition-colors duration-300">
+            {bearer.nameTa}
+          </h5>
+          <h6 className="text-xs text-gray-400 font-bold tracking-wide">
+            {bearer.nameEn}
+          </h6>
+        </div>
+
+        {/* Action Grid for Communication */}
+        <div className="flex flex-col gap-1.5 px-1 mb-2">
+          <a 
+            href={`tel:${bearer.phone}`}
+            className="inline-flex items-center justify-center gap-2 w-full py-1.5 rounded-lg bg-red-50 text-[#c8102e] text-[11px] font-bold border border-red-100/70 hover:bg-red-100 transition-colors"
+          >
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.387a12.035 12.035 0 01-7.108-7.108c-.157-.44.009-.926.387-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+            </svg>
+            அழைக்க / Call
+          </a>
+          <a 
+            href={`https://wa.me/${bearer.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full py-1.5 rounded-lg bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-100/70 hover:bg-emerald-100 transition-colors"
+          >
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.66.986 3.288 1.488 4.653 1.489 5.432 0 9.85-4.331 9.853-9.643.002-2.573-1.002-4.991-2.83-6.822-1.829-1.83-4.253-2.834-6.83-2.835-5.437 0-9.856 4.332-9.86 9.645-.001 2.126.561 4.15 1.624 5.923l-.993 3.626 3.733-.964z" />
+            </svg>
+            வாட்ஸ்அப் / Chat
+          </a>
+        </div>
+      </div>
+
+      <div className="mt-4 pt-3 border-t border-orange-100/40">
+        <span className="text-[9px] text-gray-400 font-black uppercase tracking-widest block bg-gray-50/80 py-1 rounded">
+          {bearer.part}
+        </span>
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
     </section>
   );
