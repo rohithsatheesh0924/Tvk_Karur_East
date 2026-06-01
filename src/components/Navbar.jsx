@@ -50,7 +50,7 @@ const Navbar = () => {
                 தமிழக வெற்றிக் கழகம்
               </h1>
               <p className="text-[10px] sm:text-xs text-gray-400 font-medium tracking-wider whitespace-nowrap uppercase">
-                Karur West — Eastern Part
+                Krishnarayapuram Assembly Constituency
               </p>
             </NavLink>
           </div>

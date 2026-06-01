@@ -6,7 +6,7 @@ import vijay from "../assets/vijay.jpeg";
 const Footer = () => {
   return (
     <footer className="w-full bg-[#0a0203] text-gray-400 border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
-      {/* Accent subtle background glow to match premium interface standards */}
+      {/* Ambient soft background glow for premium depth */}
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#c8102e]/5 rounded-full blur-3xl pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -14,7 +14,7 @@ const Footer = () => {
         {/* Main Content High-Density Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 border-b border-white/5">
           
-          {/* COLUMN 1: Brand Profile (Spans 4 Columns) */}
+          {/* COLUMN 1: Brand Profile */}
           <div className="md:col-span-4 flex flex-col items-center md:items-start space-y-4 text-center md:text-left">
             <div className="flex items-center gap-3">
               <div className="h-12 w-12 rounded-xl p-[1px] bg-gradient-to-tr from-[#c8102e] to-[#f05a28] shadow-xl flex-shrink-0 overflow-hidden">
@@ -35,11 +35,11 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed max-w-sm">
-              மக்களுக்கான வெளிப்படையான, தூய்மையான மற்றும் நேர்மையான அரசியல் மாற்றத்தை நோக்கி கரூர் மேற்கு மாவட்டம் — கிழக்கு பகுதி என்றும் மக்கள் பணியில்.
+              மக்களுக்கான வெளிப்படையான, தூய்மையான மற்றும் நேர்மையான அரசியல் மாற்றத்தை நோக்கி கிருஷ்ணராயபுரம் சட்டமன்றத் தொகுதி முழுவதும் மக்கள் பணியில்.
             </p>
           </div>
 
-          {/* COLUMN 2: Contact Desk (Spans 4 Columns) */}
+          {/* COLUMN 2: Contact Desk */}
           <div className="md:col-span-4 flex flex-col items-center md:items-start space-y-4">
             <h4 className="text-xs font-black text-white tracking-widest uppercase border-b border-[#c8102e] pb-1">
               தொடர்புகளுக்கு / Contact Desk
@@ -53,7 +53,7 @@ const Footer = () => {
                   <Phone className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#ffd60a]" />
                 </div>
                 <span className="font-semibold tracking-wide">+91 9344330970</span>
-              </a>
+              </a> {/* 🔹 FIXED: Changed from </div> to </a> */}
 
               <a
                 href="https://wa.me/919750565041"
@@ -68,29 +68,29 @@ const Footer = () => {
               </a>
 
               <a
-                href="mailto:karurnortheast.tvk@gmail.com"
+                href="mailto:karurnorthwest.tvk@gmail.com"
                 className="group flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-200"
               >
                 <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
                   <Mail className="w-3.5 h-3.5 text-gray-400 group-hover:text-white" />
                 </div>
-                <span className="font-semibold break-all">karurnortheast.tvk@gmail.com</span>
+                <span className="font-semibold break-all">karurnorthwest.tvk@gmail.com</span>
               </a>
             </div>
           </div>
 
-          {/* COLUMN 3: Identity Card (Spans 4 Columns) */}
+          {/* COLUMN 3: Administration Details Card */}
           <div className="md:col-span-4 flex flex-col items-center md:items-start space-y-4 w-full">
             <h4 className="text-xs font-black text-white tracking-widest uppercase border-b border-[#c8102e] pb-1">
-              வடிவமைப்பு & பராமரிப்பு / Administration Desk
+              நிர்வாக மையம் / Administration Desk
             </h4>
             <div className="w-full bg-white/[0.02] border border-white/5 rounded-xl p-4 space-y-3 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-1 h-full bg-[#f05a28]" />
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#f05a28] mt-0.5 flex-shrink-0" />
                 <div className="space-y-1">
-                  <h5 className="text-xs font-black text-gray-200">கரூர் மேற்கு மாவட்டம்</h5>
-                  <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Karur West District - TVK</p>
+                  <h5 className="text-xs font-black text-gray-200">கிருஷ்ணராயபுரம் தொகுதி</h5>
+                  <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Krishnarayapuram Constituency — TVK</p>
                 </div>
               </div>
               <p className="text-[11px] text-gray-500 leading-relaxed border-t border-white/5 pt-2 flex items-center gap-1.5 font-medium">
@@ -102,13 +102,13 @@ const Footer = () => {
 
         </div>
 
-        {/* Bottom Bar: Copyright & Professional Developer Credit */}
+        {/* Bottom Bar: Copyright & Developer Credit */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-[11px] sm:text-xs text-gray-600 font-semibold tracking-wider uppercase">
-            © {new Date().getFullYear()} TVK — Karur West District Eastern Part. All Rights Reserved.
+            © {new Date().getFullYear()} TVK — Krishnarayapuram Assembly Constituency. All Rights Reserved.
           </p>
           <div className="flex items-center gap-2 bg-white/[0.02] border border-white/5 px-4 py-1.5 rounded-full backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ffd60a] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ffd60a]" />
             <p className="text-[10px] sm:text-xs text-gray-400 font-black tracking-widest uppercase">
               Developed by <span className="text-white hover:text-[#ffd60a] transition-colors cursor-default">ROHITH</span>
             </p>
