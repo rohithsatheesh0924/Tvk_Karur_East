@@ -145,76 +145,7 @@ const CardsSection = () => {
           </div>
         </div>
 
-        {/* ================= TIER 4: DISTRICT SECRETARIES DUAL GRID ================= */}
-        {/* Sub-Header Label Strip */}
-        <div className="w-full bg-white/40 border border-orange-200/20 backdrop-blur-sm p-3 px-4 rounded-xl flex items-center justify-between mb-6">
-          <span className="text-xs font-black uppercase tracking-wider text-gray-500 flex items-center gap-2">
-            <Users className="w-4 h-4 text-orange-500" /> மாவட்டச் செயலாளர்கள் / District Administration Desk
-          </span>
-          <span className="w-2 h-2 rounded-full bg-[#f05a28]/40" />
-        </div>
-
-        {/* 2-Column Responsive Alignment Matrix */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          
-          {/* 🔹 Left Card: Karur West District Secretary */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-5 border border-orange-200/20 shadow-sm text-center flex flex-col justify-between">
-            <div className="space-y-4">
-              {/* Profile Canvas - Exact Match size constraint to Bussy Anand (w-36) */}
-              <div className="w-36 aspect-[4/5] mx-auto rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-amber-100 to-red-100 border border-orange-100/60 shadow-inner">
-                <img
-                  src={westDistrictSecImg}
-                  alt="Karur West District Secretary"
-                  className="w-full h-full object-cover rounded-lg bg-gray-50"
-                  draggable="false"
-                  onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=Karur+West+Sec"; }}
-                />
-              </div>
-
-              <div>
-                <span className="inline-block text-[9px] font-black uppercase tracking-widest text-red-800 bg-red-50 border border-red-200/60 px-2.5 py-0.5 rounded-full mb-2">
-                  மாவட்டச் செயலாளர் / Karur West District
-                </span>
-                <h5 className="text-xl font-black text-gray-900 tracking-tight">V.P. மதியழகன்</h5>
-                <p className="text-[10px] text-gray-400 font-bold tracking-wider uppercase">V.P. Mathialagan — District Secretary</p>
-              </div>
-
-              <p className="text-xs text-gray-600 leading-relaxed font-semibold px-4">
-                கரூர் மேற்கு மாவட்ட மக்களின் அடிப்படை உள்கட்டமைப்பு மற்றும் பொது உள்கட்டமைப்பு தேவைகளை வெளிப்படைத்தன்மையுடன் தீர்க்கும் களப் பொறுப்பாளர்.
-              </p>
-            </div>
-          </div>
-
-          {/* 🔹 Right Card: Karur East District Secretary */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-5 border border-orange-200/20 shadow-sm text-center flex flex-col justify-between">
-            <div className="space-y-4">
-              {/* Profile Canvas - Exact Match size constraint to Bussy Anand (w-36) */}
-              <div className="w-36 aspect-[4/5] mx-auto rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-amber-100 to-red-100 border border-orange-100/60 shadow-inner">
-                <img
-                  src={eastDistrictSecImg}
-                  alt="Karur East District Secretary"
-                  className="w-full h-full object-cover rounded-lg bg-gray-50"
-                  draggable="false"
-                  onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=Karur+East+Sec"; }}
-                />
-              </div>
-
-              <div>
-                <span className="inline-block text-[9px] font-black uppercase tracking-widest text-red-800 bg-red-50 border border-red-200/60 px-2.5 py-0.5 rounded-full mb-2">
-                  மாவட்டச் செயலாளர் / Karur East District
-                </span>
-                {/* 🔹 You can update this name placeholder string whenever needed */}
-                <h5 className="text-xl font-black text-gray-900 tracking-tight">கரூர் கிழக்கு செயலாளர்</h5>
-                <p className="text-[10px] text-gray-400 font-bold tracking-wider uppercase">Karur East Sector — District Secretary</p>
-              </div>
-
-              <p className="text-xs text-gray-600 leading-relaxed font-semibold px-4">
-                கரூர் கிழக்கு மாவட்டப் பகுதிகளில் கழகத்தின் கொள்கைகளை அடித்தட்டு மக்களிடம் கொண்டு சேர்த்து மக்கள் சேவையில் முன்னின்று செயல்படும் பொறுப்பாளர்.
-              </p>
-            </div>
-          </div>
-
-        </div>
+       
 
       </div>
     </section>
