@@ -1,14 +1,11 @@
 import React from "react";
-import { Phone, MessageCircle, ShieldCheck, Award, Star, Users } from "lucide-react";
+import { Award, Star, ShieldCheck } from "lucide-react";
 
 // Leadership Image Assets Mapping
 const presidentImg = "./vijay.jpeg";      
 const genSecretaryImg = "./Bussy.jpg"; 
 const mlaImg = "./MLA.jpeg";          
-
-// 🔹 New District Secretary Image Assets Mapping
-const westDistrictSecImg = "./Mathi.jpg";    // 🔹 Place Karur West Secretary image here
-const eastDistrictSecImg = "./Balu1.jpeg"; // 🔹 Place Karur East Secretary image here
+const westDistrictSecImg = "./Mathi.jpg";    // 🔹 District Head / Secretary Image
 
 const CardsSection = () => {
   return (
@@ -79,7 +76,6 @@ const CardsSection = () => {
         <div className="flex justify-center mb-16">
           <div className="w-full max-w-2xl bg-white/80 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-orange-200/20 shadow-sm text-center">
             <div className="space-y-4">
-              {/* Profile Canvas - Compact Box Size */}
               <div className="w-36 aspect-[4/5] mx-auto rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-amber-100 to-red-100 border border-orange-100/60 shadow-inner">
                 <img
                   src={genSecretaryImg}
@@ -105,20 +101,20 @@ const CardsSection = () => {
           </div>
         </div>
 
-        {/* ================= TIER 3: ASSEMBLY MLA CANDIDATE (IDENTICAL SIZE TO PRESIDENT) ================= */}
+        {/* ================= TIER 3: DISTRICT HEAD / SECRETARY (BIG MAX SIZE) ================= */}
         <div className="w-full bg-white rounded-3xl p-6 md:p-10 border border-orange-200/30 relative overflow-hidden shadow-sm mb-16">
-          <div className="absolute top-0 inset-x-0 h-[4px] bg-gradient-to-r from-[#f05a28] to-[#ffd60a]" />
+          <div className="absolute top-0 inset-x-0 h-[4px] bg-gradient-to-r from-[#c8102e] to-[#f05a28]" />
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            {/* Left Image Column */}
+            {/* Left Image Column - Promoted to Big Sizing Dimensions */}
             <div className="md:col-span-5 lg:col-span-4 flex justify-center">
-              <div className="w-full aspect-[4/5] max-w-[280px] md:max-w-none rounded-2xl overflow-hidden p-1.5 bg-gradient-to-tr from-[#f05a28] to-[#ffd60a] border border-orange-100 shadow-md">
+              <div className="w-full aspect-[4/5] max-w-[280px] md:max-w-none rounded-2xl overflow-hidden p-1.5 bg-gradient-to-tr from-[#c8102e] to-[#f05a28] border border-orange-100 shadow-md">
                 <img
-                  src={mlaImg}
-                  alt="MLA Winner"
+                  src={westDistrictSecImg}
+                  alt="District Secretary"
                   className="w-full h-full object-cover rounded-xl bg-gray-50"
                   draggable="false"
-                  onError={(e) => { e.target.src = "https://via.placeholder.com/400x500?text=TVK+MLA+Candidate"; }}
+                  onError={(e) => { e.target.src = "https://via.placeholder.com/400x500?text=District+Secretary"; }}
                 />
               </div>
             </div>
@@ -126,26 +122,54 @@ const CardsSection = () => {
             {/* Right Text Column */}
             <div className="md:col-span-7 lg:col-span-8 text-center md:text-left space-y-4">
               <div>
-                <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-black bg-[#ffd60a] px-3 py-1 rounded-md mb-3 shadow-sm border border-yellow-300">
-                  <Award className="w-3.5 h-3.5 text-black" /> சட்டமன்ற வேட்பாளர் / MLA Candidate Winner
+                <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-white bg-[#c8102e] px-2.5 py-1 rounded-md mb-3 shadow-sm">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#ffd60a]" /> மாவட்டச் செயலாளர் / District Head
                 </span>
-                <h4 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">கிருஷ்ணராயபுரம் சட்டமன்ற வெற்றியாளர்</h4>
-                <p className="text-xs text-gray-400 font-black tracking-widest uppercase mt-0.5">Krishnarayapuram Constituency Legislative Assembly Member</p>
+                <h4 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">V.P. மதியழகன்</h4>
+                <p className="text-xs text-gray-400 font-black tracking-widest uppercase mt-0.5">V.P. Mathialagan — Karur West District Secretary</p>
               </div>
               
               <div className="bg-gradient-to-r from-[#fffbf9] to-[#fef6f1] p-5 rounded-2xl border border-orange-100/50 text-left space-y-3">
                 <p className="text-sm md:text-base text-gray-800 leading-relaxed font-bold">
-                  கிருஷ்ணராயபுரம் தொகுதி மக்களின் அடிப்படைத் தேவைகளான குடிநீர், சாலை வசதிகள் மற்றும் கல்வி வாய்ப்புகளை மேம்படுத்தி, தொகுதி மக்கள் எளிதில் அணுகக்கூடிய தூய்மையான மக்கள் சேவையை வழங்கி வருகிறார்.
+                  கரூர் மேற்கு மாவட்ட மக்களின் உரிமைகளை மீட்டெடுக்கவும், முறையான உள்கட்டமைப்பு மற்றும் வெளிப்படையான மக்கள் சேவை வழங்கிட முன்னின்று செயல்படுகிறார்.
                 </p>
                 <p className="text-xs text-gray-500 leading-relaxed italic border-t border-orange-100/40 pt-2 font-medium">
-                  Championing regional civic growth matrices. Ensuring that public infrastructure reports are cleared with strategic priority across Krishnarayapuram sector blocks.
+                  Leading the movement forward to ensure transparent governance and swift grievance redressal for every citizen across the region.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-       
+        {/* ================= TIER 4: MLA CANDIDATE (DOWNSIZED TO SMALLER IMAGE BLOCK) ================= */}
+        <div className="flex justify-center">
+          <div className="w-full max-w-2xl bg-white/80 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-orange-200/20 shadow-sm text-center">
+            <div className="space-y-4">
+              {/* Profile Canvas - Downsized to match the exact dimensions of Tier 2 */}
+              <div className="w-36 aspect-[4/5] mx-auto rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-amber-100 to-red-100 border border-orange-100/60 shadow-inner">
+                <img
+                  src={mlaImg}
+                  alt="MLA Winner"
+                  className="w-full h-full object-cover rounded-lg bg-gray-50"
+                  draggable="false"
+                  onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=TVK+MLA+Candidate"; }}
+                />
+              </div>
+
+              <div>
+                <span className="inline-block text-[9px] font-black uppercase tracking-widest text-black bg-[#ffd60a] border border-yellow-300 px-2.5 py-0.5 rounded-full mb-2 shadow-sm">
+                  <Award className="w-3 h-3 inline mr-1 text-black" /> சட்டமன்ற வேட்பாளர் / MLA Candidate Winner
+                </span>
+                <h5 className="text-xl font-black text-gray-900 tracking-tight">கிருஷ்ணராயபுரம் சட்டமன்ற வெற்றியாளர்</h5>
+                <p className="text-[10px] text-gray-400 font-bold tracking-wider uppercase">Krishnarayapuram Constituency Legislative Assembly Member</p>
+              </div>
+
+              <p className="text-xs text-gray-600 leading-relaxed font-semibold px-4">
+                கிருஷ்ணராயபுரம் தொகுதி மக்களின் அடிப்படைத் தேவைகளான குடிநீர், சாலை வசதிகள் மற்றும் கல்வி வாய்ப்புகளை மேம்படுத்தி, தொகுதி மக்கள் எளிதில் அணுகக்கூடிய தூய்மையான மக்கள் சேவையை வழங்கி வருகிறார்.
+              </p>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>

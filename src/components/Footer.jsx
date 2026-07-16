@@ -35,7 +35,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed max-w-sm">
-              மக்களுக்கான வெளிப்படையான, தூய்மையான மற்றும் நேர்மையான அரசியல் மாற்றத்தை நோக்கி கிருஷ்ணராயபுரம் சட்டமன்றத் தொகுதி முழுவதும் மக்கள் பணியில்.
+              மக்களுக்கான வெளிப்படையான, தூய்மையான மற்றும் நேர்மையான அரசியல் மாற்றத்தை நோக்கி கரூர் மேற்கு மாவட்டம் — கிழக்கு நகரம் முழுவதும் மக்கள் பணியில்.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ const Footer = () => {
                   <Phone className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#ffd60a]" />
                 </div>
                 <span className="font-semibold tracking-wide">+91 9344330970</span>
-              </a> {/* 🔹 FIXED: Changed from </div> to </a> */}
+              </a>
 
               <a
                 href="https://wa.me/919750565041"
@@ -89,8 +89,8 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#f05a28] mt-0.5 flex-shrink-0" />
                 <div className="space-y-1">
-                  <h5 className="text-xs font-black text-gray-200">கிருஷ்ணராயபுரம் தொகுதி</h5>
-                  <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Krishnarayapuram Constituency — TVK</p>
+                  <h5 className="text-xs font-black text-gray-200">கரூர் மேற்கு மாவட்டம் — கிழக்கு நகரம்</h5>
+                  <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Karur West District (Eastern Town) — TVK</p>
                 </div>
               </div>
               <p className="text-[11px] text-gray-500 leading-relaxed border-t border-white/5 pt-2 flex items-center gap-1.5 font-medium">
@@ -105,7 +105,7 @@ const Footer = () => {
         {/* Bottom Bar: Copyright & Developer Credit */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-[11px] sm:text-xs text-gray-600 font-semibold tracking-wider uppercase">
-            © {new Date().getFullYear()} TVK — Krishnarayapuram Assembly Constituency. All Rights Reserved.
+            © {new Date().getFullYear()} TVK — Karur West District — Eastern Town. All Rights Reserved.
           </p>
           <div className="flex items-center gap-2 bg-white/[0.02] border border-white/5 px-4 py-1.5 rounded-full backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ffd60a]" />

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { User, Phone, Mail, MapPin, AlertTriangle, Camera, Send, CheckCircle2 } from "lucide-react";
+import { User, Phone, Mail, MapPin, AlertTriangle, Camera, Send, CheckCircle2, MessageSquare } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const GrievanceFormSection = () => {
@@ -12,29 +12,43 @@ const GrievanceFormSection = () => {
     name: "",
     phone: "",
     email: "",
-    unionBlock: "", // 🔹 Tracking Union Blocks across the constituency
-    panchayatWard: "", // 🔹 Tracking localized Panchayats / Wards
-    constituency: "Krishnarayapuram Constituency / கிருஷ்ணராயபுரம் சட்டமன்றத் தொகுதி", // Fixed default
+    ward: "", 
+    constituency: "", 
     street: "",
     complaint: ""
   });
 
-  // Handles input and state updates cleanly
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }));
+  // Dynamic lookup mapping wards to constituencies
+  const handleWardChange = (e) => {
+    const selectedWard = e.target.value;
+    let autoConstituency = "";
+
+    if (["12", "17"].includes(selectedWard)) {
+      autoConstituency = "Karur Constituency / கரூர் சட்டமன்றத் தொகுதி";
+    } else if (["13", "14", "16", "18"].includes(selectedWard)) {
+      autoConstituency = "Krishnarayapuram Constituency / கிருஷ்ணராயபுரம் சட்டமன்றத் தொகுதி";
+    }
+
+    setFormData({
+      ...formData,
+      ward: selectedWard,
+      constituency: autoConstituency
+    });
   };
 
-  // Handles and validates image attachment constraints
+  // Handles text input changes safely
+  const handleTextChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handles and validates image attachment constraints up to 5MB
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // EmailJS Free tier restriction checker (50KB cap)
-      if (file.size > 50 * 1024) {
-        alert("புகைப்படத்தின் அளவு 50KB-க்கு குறைவாக இருக்க வேண்டும். / Photo proof must be under 50KB for the free email tier transmission.");
+      // 🔹 Max file threshold calculation set to exactly 5MB
+      if (file.size > 5 * 1024 * 1024) {
+        alert("புகைப்படத்தின் அளவு 5MB-க்கு குறைவாக இருக்க வேண்டும். / Photo proof must be under 5MB.");
         e.target.value = ""; 
         setFileName("");
         return;
@@ -43,51 +57,60 @@ const GrievanceFormSection = () => {
     }
   };
 
+  // Generates a clean, readable text string for WhatsApp transmissions
+  const triggerWhatsAppFallback = () => {
+    const WHATSAPP_NUMBER = "919750565041"; // Primary administrative node
+    
+    const messageText = 
+`*புதிய புகார் பதிவு (Grievance Portal)*
+--------------------------------------------
+*பெயர்:* ${formData.name || "Not Provided"}
+*அலைபேசி:* ${formData.phone || "Not Provided"}
+*மின்னஞ்சல்:* ${formData.email || "Not Provided"}
+*வார்டு எண்:* ${formData.ward || "Not Selected"}
+*தொகுதி:* ${formData.constituency || "Not Derived"}
+*தெரு விவரம்:* ${formData.street || "Not Provided"}
+*புகார் விவரம்:* ${formData.complaint || "Not Provided"}
+--------------------------------------------`;
+
+    const encodedMessage = encodeURIComponent(messageText);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSending(true);
 
-    // const SERVICE_ID = "service_xg5jvvb";
-    // const TEMPLATE_ID = "template_29rdchv";
-    // const PUBLIC_KEY = "ONqjWe3PJDD2qS6OA";
+    const SERVICE_ID = "service_xg5jvvb";
+    const TEMPLATE_ID = "template_29rdchv";
+    const PUBLIC_KEY = "ONqjWe3PJDD2qS6OA";
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
       .then((result) => {
           console.log("EmailJS Success:", result.text);
           setIsSubmitted(true);
           setIsSending(false);
-          setFormData({ 
-            name: "", 
-            phone: "", 
-            email: "", 
-            unionBlock: "", 
-            panchayatWard: "", 
-            constituency: "Krishnarayapuram Constituency / கிருஷ்ணராயபுரம் சட்டமன்றத் தொகுதி", 
-            street: "", 
-            complaint: "" 
-          });
+          setFormData({ name: "", phone: "", email: "", ward: "", constituency: "", street: "", complaint: "" });
           setFileName("");
       })
       .catch((error) => {
-          console.error("EmailJS Diagnostic Log:", error);
-          const statusCode = error.status ? `Status: ${error.status}` : "";
-          const errorText = error.text ? `Reason: ${error.text}` : "";
-          
-          alert(
-            `புகார் சமர்ப்பிப்பதில் சிக்கல் ஏற்பட்டது.\n\n[Diagnostic Error Details]\n${statusCode}\n${errorText}`
-          );
+          console.error("EmailJS Failed. Routing via WhatsApp Desk:", error);
           setIsSending(false);
+          
+          // 🔹 Seamless client notification followed by secondary fallback execution
+          alert("மின்னஞ்சல் சேவையில் தற்காலிக சிக்கல் உள்ளது. உங்கள் புகார் வாட்ஸ்அப் (WhatsApp) மூலம் நேரடியாக அனுப்பப்படும். / Email pipeline busy. Redirecting to WhatsApp desk...");
+          triggerWhatsAppFallback();
       });
   };
 
   return (
     <section id="grievance-portal" className="relative w-full bg-gradient-to-b from-[#fefbf9] via-[#fef6f1] to-[#fcf0e7] py-20 md:py-28 border-t border-b border-orange-100/60 overflow-hidden">
-      {/* Structural Accent Grid */}
+      {/* Structural Accent Blueprint Grid */}
       <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:30px_30px]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* Section Header Layout Block */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#c8102e]/5 to-[#f05a28]/5 border border-orange-200/40 backdrop-blur-sm mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c8102e]" />
@@ -99,31 +122,38 @@ const GrievanceFormSection = () => {
             குறைகளைப் பதிவு செய்ய
           </h3>
           <p className="text-sm md:text-base text-gray-500 font-semibold tracking-widest uppercase mt-3">
-            Krishnarayapuram Constituency — முழு தொகுதி குறைதீர்க்கும் மையம்
+            Ward & Constituency Action Center
           </p>
           <div className="w-12 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28] mx-auto mt-6 rounded-full" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* LEFT COLUMN: Context & Guidelines */}
+          {/* LEFT COLUMN: Structural Guidelines Panel */}
           <div className="lg:col-span-4 bg-white/60 border border-orange-200/20 backdrop-blur-sm rounded-2xl p-6 space-y-6">
             <div>
               <h4 className="text-lg font-black text-gray-900">முறையான உள்கட்டமைப்பு மாற்றம்</h4>
-              <p className="text-xs text-gray-500 font-bold tracking-wide uppercase mt-0.5">Constituency Resolution Tracking</p>
+              <p className="text-xs text-gray-500 font-bold tracking-wide uppercase mt-0.5">Transparent Resolution Tracking</p>
             </div>
             
             <p className="text-xs text-gray-600 leading-relaxed font-medium">
-              கிருஷ்ணராயபுரம் சட்டமன்றத் தொகுதிக்குட்பட்ட அனைத்து ஊராட்சிகள் மற்றும் பேரூராட்சிகளின் குடிநீர் பற்றாக்குறை, சாலை பழுதுகள், சாக்கடை வசதிகள் அல்லது தெருவிளக்கு மின்பிரச்சினைகளை ஆதாரப் படங்களுடன் பதிவிடவும்.
+              உங்கள் தெருக்களில் உள்ள சாக்கடை வசதி, குடிநீர் பற்றாக்குறை, சாலை பழுதுகள் அல்லது தெருவிளக்கு மின்பிரச்சினைகளை ஆதாரப் படங்களுடன் பதிவிடவும். பெறப்படும் புகார்கள் அனைத்தும் நேரடியாக சரிபார்க்கப்படும்.
             </p>
 
             <div className="p-4 rounded-xl bg-orange-50/50 border border-orange-100 space-y-3">
               <span className="text-[11px] font-black uppercase text-[#c8102e] tracking-wider block">
-                தொகுதி எல்லை வழிகாட்டி / Block Guide
+                தொகுதி எல்லை வழிகாட்டி / Jurisdiction Guide
               </span>
-              <p className="text-[11px] text-gray-600 font-medium leading-relaxed">
-                இந்த போர்டல் கிருஷ்ணராயபுரம், தோகைமலை, கடவூர் மற்றும் கரூர் ஒன்றியப் பகுதிகளில் உள்ள அனைத்து கிராம ஊராட்சிகளுக்கும் பொருந்தும்.
-              </p>
+              <ul className="text-[11px] text-gray-600 space-y-2 font-medium">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#c8102e] font-bold">•</span>
+                  <span><strong>வார்டு 12, 17:</strong> கரூர் சட்டமன்றத் தொகுதி (Karur)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#f05a28] font-bold">•</span>
+                  <span><strong>வார்டு 13, 14, 16, 18:</strong> கிருஷ்ணராயபுரம் தொகுதி (Krishnarayapuram)</span>
+                </li>
+              </ul>
             </div>
 
             <div className="pt-4 border-t border-orange-100">
@@ -134,7 +164,7 @@ const GrievanceFormSection = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Grievance Form Panel */}
+          {/* RIGHT COLUMN: Grievance Form Panel Block */}
           <div className="lg:col-span-8">
             <div className="bg-white rounded-3xl p-6 md:p-10 border border-orange-200/30 shadow-xl shadow-orange-900/[0.01] relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28]" />
@@ -146,7 +176,7 @@ const GrievanceFormSection = () => {
                   </div>
                   <h4 className="text-2xl font-black text-gray-900">புகார் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது!</h4>
                   <p className="text-sm text-gray-500 max-w-md mx-auto">
-                    Thank you. Your grievance report has been accurately logged for Krishnarayapuram constituency block review. Our field representatives will contact you shortly.
+                    Thank you. Your grievance report has been accurately logged for review. Our local field representatives will contact you shortly.
                   </p>
                   <button 
                     onClick={() => setIsSubmitted(false)}
@@ -158,7 +188,7 @@ const GrievanceFormSection = () => {
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 text-left">
                   
-                  {/* HIDDEN FIELDS: Used to dictate the primary administrative destination */}
+                  {/* HIDDEN FIELDS: Data targets for primary administration routing hooks */}
                   <input type="hidden" name="to_email" value="karurnorthwest.tvk@gmail.com" />
                   <input type="hidden" name="to_name" value="TVK Administration Desk" />
 
@@ -171,10 +201,10 @@ const GrievanceFormSection = () => {
                       <input 
                         type="text" 
                         required
-                        name="from_name"
+                        name="name"
                         placeholder="Enter full name"
                         value={formData.name}
-                        onChange={handleInputChange}
+                        onChange={handleTextChange}
                         className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
                       />
                     </div>
@@ -186,16 +216,16 @@ const GrievanceFormSection = () => {
                       <input 
                         type="tel" 
                         required
-                        name="user_phone"
+                        name="phone"
                         placeholder="Enter 10 digit number"
                         value={formData.phone}
-                        onChange={handleInputChange}
+                        onChange={handleTextChange}
                         className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
                       />
                     </div>
                   </div>
 
-                  {/* Row 2: Email Address & Assembly Constituency */}
+                  {/* Row 2: Email Address & Ward Select Dropdown */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-1.5">
                       <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
@@ -204,130 +234,105 @@ const GrievanceFormSection = () => {
                       <input 
                         type="email" 
                         required
-                        name="user_email"
+                        name="email"
                         placeholder="name@example.com"
                         value={formData.email}
-                        onChange={handleInputChange}
+                        onChange={handleTextChange}
                         className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-black text-gray-400 uppercase tracking-wider">
-                        சட்டமன்றத் தொகுதி / Assembly Constituency
-                      </label>
-                      <input 
-                        type="text" 
-                        name="assembly_constituency"
-                        readOnly
-                        value={formData.constituency}
-                        className="w-full px-4 py-3 bg-orange-50/30 border border-orange-100 rounded-xl text-sm text-gray-600 font-bold focus:outline-none cursor-not-allowed select-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Row 3: Union Block Select & Local Panchayat / Ward */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-1.5">
                       <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-gray-400" /> ஒன்றியம் / Select Block *
+                        <MapPin className="w-3.5 h-3.5 text-gray-400" /> வார்டு எண் / Select Ward *
                       </label>
                       <select 
                         required
-                        name="unionBlock"
-                        value={formData.unionBlock}
-                        onChange={handleInputChange}
+                        name="ward_number"
+                        value={formData.ward}
+                        onChange={handleWardChange}
                         className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition-all cursor-pointer"
                       >
-                        <option value="">-- Select Block --</option>
-                        <option value="Krishnarayapuram">Krishnarayapuram / கிருஷ்ணராயபுரம் ஒன்றியம்</option>
-                        <option value="Thogaimalai">Thogaimalai / தோகைமலை ஒன்றியம்</option>
-                        <option value="Kadavur">Kadavur / கடவூர் ஒன்றியம்</option>
-                        <option value="Karur-Part">Karur Block (Part) / கரூர் ஒன்றியம் (பகுதி)</option>
+                        <option value="">-- Select Ward --</option>
+                        <option value="12">Ward 12 / வார்டு 12</option>
+                        <option value="13">Ward 13 / வார்டு 13</option>
+                        <option value="14">Ward 14 / வார்டு 14</option>
+                        <option value="16">Ward 16 / வார்டு 16</option>
+                        <option value="17">Ward 17 / வார்டு 17</option>
+                        <option value="18">Ward 18 / வார்டு 18</option>
                       </select>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-gray-400" /> ஊராட்சி / வார்டு எண் / Panchayat or Ward *
-                      </label>
-                      <input 
-                        type="text" 
-                        required
-                        name="panchayatWard"
-                        placeholder="e.g. உப்பிடமங்கலம் பேரூராட்சி / வார்டு 5"
-                        value={formData.panchayatWard}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
-                      />
                     </div>
                   </div>
 
-                  {/* Row 4: Street & Village Details */}
+                  {/* Row 3: Auto-Derived Assembly Constituency Input Container */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-black text-gray-400 uppercase tracking-wider">
+                      சட்டமன்றத் தொகுதி / Assembly Constituency
+                    </label>
+                    <input 
+                      type="text" 
+                      name="assembly_constituency"
+                      readOnly
+                      placeholder="Auto-derived from selected ward"
+                      value={formData.constituency}
+                      className="w-full px-4 py-3 bg-orange-50/30 border border-orange-100 rounded-xl text-sm text-gray-600 font-bold focus:outline-none cursor-not-allowed select-none"
+                    />
+                  </div>
+
+                  {/* Row 4: Street & Area Address Info */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-gray-400" /> கிராமம் மற்றும் தெரு பெயர் / Village & Street Details *
+                      <MapPin className="w-3.5 h-3.5 text-gray-400" /> தெருவின் பெயர் மற்றும் கிராமம் / Street & Area Data *
                     </label>
                     <input 
                       type="text" 
                       required
-                      name="street_address"
-                      placeholder="e.g. காந்தி நகர், மேலப்பாளையம்"
+                      name="street"
+                      placeholder="e.g. West Cross Street, Gandhi Nagar"
                       value={formData.street}
-                      onChange={(e) => setFormData({...formData, street: e.target.value})}
+                      onChange={handleTextChange}
                       className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
                     />
                   </div>
 
-                  {/* Row 5: Problem Statement */}
+                  {/* Row 5: Detailed Problem Statement Textarea Container */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
                       <AlertTriangle className="w-3.5 h-3.5 text-gray-400" /> புகாரின் விவரம் / Complaint Details *
                     </label>
                     <textarea 
                       required
-                      name="complaint_details"
+                      name="complaint"
                       rows="4"
-                      placeholder="Please explicitly describe the regional infrastructure problem here..."
+                      placeholder="Please explicitly describe the infrastructure problem here..."
                       value={formData.complaint}
-                      onChange={(e) => setFormData({...formData, complaint: e.target.value})}
+                      onChange={handleTextChange}
                       className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition resize-none"
                     />
                   </div>
 
-                  {/* Row 6: Image Attachment Proof */}
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                      <Camera className="w-3.5 h-3.5 text-gray-400" /> புகைப்பட ஆதாரம் / Attach Photo Proof (Optional)
-                    </label>
-                    
-                    <div className="w-full border-2 border-dashed border-gray-200 rounded-xl p-4 bg-gray-50/30 hover:bg-white hover:border-[#f05a28]/50 transition duration-200 text-center relative cursor-pointer group">
-                      <input 
-                        type="file" 
-                        name="proof_image"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                      />
-                      <div className="flex flex-col items-center justify-center space-y-1">
-                        <Camera className="w-6 h-6 text-gray-400 group-hover:text-[#f05a28] transition-colors" />
-                        <p className="text-xs font-bold text-gray-600">
-                          {fileName ? `Selected: ${fileName}` : "புகைப்படத்தை பதிவேற்ற கிளிக் செய்யவும் / Click to upload image"}
-                        </p>
-                        <p className="text-[10px] text-gray-400">PNG, JPG, JPEG up to 50KB (Free Tier Limit)</p>
-                      </div>
-                    </div>
-                  </div>
+               
 
-                  {/* Submit Button */}
-                  <div className="pt-2 text-center md:text-left">
+                  {/* Action Buttons High-Density Layout Row Array */}
+                  <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
+                    {/* Primary Email Submission Route */}
                     <button
                       type="submit"
                       disabled={isSending}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full hover:shadow-lg hover:shadow-[#ffd60a]/20 transform hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:w-auto disabled:opacity-50"
                     >
                       <Send className="w-4 h-4" /> 
-                      {isSending ? "அனுப்பப்படுகிறது... / Sending..." : "புகார் சமர்ப்பிக்க / Submit Grievance"}
+                      {isSending ? "அனுப்பப்படுகிறது... / Sending..." : "இணையவழியே சமர்ப்பிக்க / Submit Online"}
+                    </button>
+
+                    {/* Secondary Manual WhatsApp Fallback Route */}
+                    <button
+                      type="button"
+                      onClick={triggerWhatsAppFallback}
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:w-auto hover:bg-emerald-700 transition-colors"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                      வாட்ஸ்அப் மூலம் அனுப்ப / Send via WhatsApp
                     </button>
                   </div>
 
