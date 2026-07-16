@@ -1,11 +1,10 @@
 import React, { useState, useRef } from "react";
-import { User, Phone, Mail, MapPin, AlertTriangle, Camera, Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { User, Phone, Mail, MapPin, AlertTriangle, Send, CheckCircle2, MessageSquare } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const GrievanceFormSection = () => {
   const formRef = useRef(); 
   const [isSending, setIsSending] = useState(false); 
-  const [fileName, setFileName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -18,7 +17,6 @@ const GrievanceFormSection = () => {
     complaint: ""
   });
 
-  // Dynamic lookup mapping wards to constituencies
   const handleWardChange = (e) => {
     const selectedWard = e.target.value;
     let autoConstituency = "";
@@ -36,30 +34,13 @@ const GrievanceFormSection = () => {
     });
   };
 
-  // Handles text input changes safely
   const handleTextChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handles and validates image attachment constraints up to 5MB
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // 🔹 Max file threshold calculation set to exactly 5MB
-      if (file.size > 5 * 1024 * 1024) {
-        alert("புகைப்படத்தின் அளவு 5MB-க்கு குறைவாக இருக்க வேண்டும். / Photo proof must be under 5MB.");
-        e.target.value = ""; 
-        setFileName("");
-        return;
-      }
-      setFileName(file.name);
-    }
-  };
-
-  // Generates a clean, readable text string for WhatsApp transmissions
   const triggerWhatsAppFallback = () => {
-    const WHATSAPP_NUMBER = "919750565041"; // Primary administrative node
+    const WHATSAPP_NUMBER = "919750565041"; 
     
     const messageText = 
 `*புதிய புகார் பதிவு (Grievance Portal)*
@@ -91,13 +72,10 @@ const GrievanceFormSection = () => {
           setIsSubmitted(true);
           setIsSending(false);
           setFormData({ name: "", phone: "", email: "", ward: "", constituency: "", street: "", complaint: "" });
-          setFileName("");
       })
       .catch((error) => {
           console.error("EmailJS Failed. Routing via WhatsApp Desk:", error);
           setIsSending(false);
-          
-          // 🔹 Seamless client notification followed by secondary fallback execution
           alert("மின்னஞ்சல் சேவையில் தற்காலிக சிக்கல் உள்ளது. உங்கள் புகார் வாட்ஸ்அப் (WhatsApp) மூலம் நேரடியாக அனுப்பப்படும். / Email pipeline busy. Redirecting to WhatsApp desk...");
           triggerWhatsAppFallback();
       });
@@ -105,7 +83,6 @@ const GrievanceFormSection = () => {
 
   return (
     <section id="grievance-portal" className="relative w-full bg-gradient-to-b from-[#fefbf9] via-[#fef6f1] to-[#fcf0e7] py-20 md:py-28 border-t border-b border-orange-100/60 overflow-hidden">
-      {/* Structural Accent Blueprint Grid */}
       <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:30px_30px]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -188,7 +165,6 @@ const GrievanceFormSection = () => {
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 text-left">
                   
-                  {/* HIDDEN FIELDS: Data targets for primary administration routing hooks */}
                   <input type="hidden" name="to_email" value="karurnorthwest.tvk@gmail.com" />
                   <input type="hidden" name="to_name" value="TVK Administration Desk" />
 
@@ -225,7 +201,7 @@ const GrievanceFormSection = () => {
                     </div>
                   </div>
 
-                  {/* Row 2: Email Address & Ward Select Dropdown */}
+                  {/* Row 2: Email Address & Ward Select */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-1.5">
                       <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
@@ -264,7 +240,7 @@ const GrievanceFormSection = () => {
                     </div>
                   </div>
 
-                  {/* Row 3: Auto-Derived Assembly Constituency Input Container */}
+                  {/* Row 3: Auto-Derived Assembly Constituency */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-black text-gray-400 uppercase tracking-wider">
                       சட்டமன்றத் தொகுதி / Assembly Constituency
@@ -307,29 +283,42 @@ const GrievanceFormSection = () => {
                       placeholder="Please explicitly describe the infrastructure problem here..."
                       value={formData.complaint}
                       onChange={handleTextChange}
-                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition resize-none"
+                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition resize-none pb-2"
                     />
                   </div>
 
-               
+                  {/* 🔹 Upper Level: Premium Classy Layout Positioning the Notice Box Above the Buttons */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full pt-2">
+                    {/* Left Spacer to keep layout balanced on desktop */}
+                    <div className="hidden sm:block" />
+                    
+                    {/* Right Aligned Premium Notice Box pointing downward */}
+                    <div className="bg-emerald-50/60 border border-emerald-100/70 rounded-2xl p-3 flex items-start gap-2.5 shadow-sm">
+                      
+                      <div className="flex flex-col space-y-0.5 text-[10px] sm:text-[11px] font-bold text-emerald-700 leading-normal">
+                        <span>• புகார் தொடர்பான புகைப்படங்கள் ஏதேனும் இருந்தால் கீழே உள்ள வாட்ஸ்அப் (WhatsApp) மூலம் அனுப்பவும்.</span>
+                        <span className="text-emerald-600/80 font-semibold">• If you have any related images, please send them via WhatsApp below.</span>
+                      </div>
+                    </div>
+                  </div>
 
-                  {/* Action Buttons High-Density Layout Row Array */}
-                  <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
-                    {/* Primary Email Submission Route */}
+                  {/* 🔹 Lower Level: Main Action Buttons Row */}
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
+                    {/* Left Side: Submit Online */}
                     <button
                       type="submit"
                       disabled={isSending}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:w-auto disabled:opacity-50"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:flex-1 disabled:opacity-50"
                     >
                       <Send className="w-4 h-4" /> 
                       {isSending ? "அனுப்பப்படுகிறது... / Sending..." : "இணையவழியே சமர்ப்பிக்க / Submit Online"}
                     </button>
 
-                    {/* Secondary Manual WhatsApp Fallback Route */}
+                    {/* Right Side: Send via WhatsApp */}
                     <button
                       type="button"
                       onClick={triggerWhatsAppFallback}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:w-auto hover:bg-emerald-700 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:flex-1 hover:bg-emerald-700 transition-colors"
                     >
                       <MessageSquare className="w-4 h-4" />
                       வாட்ஸ்அப் மூலம் அனுப்ப / Send via WhatsApp
