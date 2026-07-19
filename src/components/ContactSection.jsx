@@ -40,7 +40,7 @@ const GrievanceFormSection = () => {
   };
 
   const triggerWhatsAppFallback = () => {
-    const WHATSAPP_NUMBER = "919750565041"; 
+    const WHATSAPP_NUMBER = "+919344330970"; 
     
     const messageText = 
 `*புதிய புகார் பதிவு (Grievance Portal)*

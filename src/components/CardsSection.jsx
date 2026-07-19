@@ -4,7 +4,7 @@ import { Award, Star, ShieldCheck } from "lucide-react";
 // Leadership Image Assets Mapping
 const presidentImg = "./vijay.jpeg";      
 const genSecretaryImg = "./Bussy.jpg"; 
-const mlaImg = "./MLA.jpeg";          
+const mlaImg = "./kishore.png";  // 🔹 Town Secretary / MLA Image  
 const westDistrictSecImg = "./Mathi.jpg";    // 🔹 District Head / Secretary Image
 
 const CardsSection = () => {
@@ -141,35 +141,35 @@ const CardsSection = () => {
           </div>
         </div>
 
-        {/* ================= TIER 4: MLA CANDIDATE (DOWNSIZED TO SMALLER IMAGE BLOCK) ================= */}
-        <div className="flex justify-center">
-          <div className="w-full max-w-2xl bg-white/80 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-orange-200/20 shadow-sm text-center">
-            <div className="space-y-4">
-              {/* Profile Canvas - Downsized to match the exact dimensions of Tier 2 */}
-              <div className="w-36 aspect-[4/5] mx-auto rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-amber-100 to-red-100 border border-orange-100/60 shadow-inner">
-                <img
-                  src={mlaImg}
-                  alt="MLA Winner"
-                  className="w-full h-full object-cover rounded-lg bg-gray-50"
-                  draggable="false"
-                  onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=TVK+MLA+Candidate"; }}
-                />
-              </div>
+        {/* ================= TIER 4: TOWN SECRETARY (COMPACT DESIGN) ================= */}
+<div className="flex justify-center">
+  <div className="w-full max-w-2xl bg-white/80 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-orange-200/20 shadow-sm text-center">
+    <div className="space-y-4">
+      {/* Profile Canvas - Downsized to match the exact dimensions of Tier 2 */}
+      <div className="w-36 aspect-[4/5] mx-auto rounded-xl overflow-hidden p-1 bg-gradient-to-tr from-amber-100 to-red-100 border border-orange-100/60 shadow-inner">
+        <img
+          src={mlaImg} // 🔹 உங்களின் கிஷோர் ராமலிங்கம் புகைப்பட வேரியபிளை இங்கே மாற்றிக்கொள்ளலாம் (e.g., secretaryImg)
+          alt="Town Secretary Kishore Ramalingam"
+          className="w-full h-full object-cover rounded-lg bg-gray-50"
+          draggable="false"
+          onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=TVK+Town+Secretary"; }}
+        />
+      </div>
 
-              <div>
-                <span className="inline-block text-[9px] font-black uppercase tracking-widest text-black bg-[#ffd60a] border border-yellow-300 px-2.5 py-0.5 rounded-full mb-2 shadow-sm">
-                  <Award className="w-3 h-3 inline mr-1 text-black" /> சட்டமன்ற வேட்பாளர் / MLA Candidate Winner
-                </span>
-                <h5 className="text-xl font-black text-gray-900 tracking-tight">கிருஷ்ணராயபுரம் சட்டமன்ற வெற்றியாளர்</h5>
-                <p className="text-[10px] text-gray-400 font-bold tracking-wider uppercase">Krishnarayapuram Constituency Legislative Assembly Member</p>
-              </div>
+      <div>
+        <span className="inline-block text-[9px] font-black uppercase tracking-widest text-black bg-[#ffd60a] border border-yellow-300 px-2.5 py-0.5 rounded-full mb-2 shadow-sm">
+          <Award className="w-3 h-3 inline mr-1 text-black" /> நகரச் செயலாளர் / Town Secretary
+        </span>
+        <h5 className="text-xl font-black text-gray-900 tracking-tight">கிஷோர் ராமலிங்கம்</h5>
+        <p className="text-[10px] text-gray-400 font-bold tracking-wider uppercase">Karur West District — Eastern Town Secretary</p>
+      </div>
 
-              <p className="text-xs text-gray-600 leading-relaxed font-semibold px-4">
-                கிருஷ்ணராயபுரம் தொகுதி மக்களின் அடிப்படைத் தேவைகளான குடிநீர், சாலை வசதிகள் மற்றும் கல்வி வாய்ப்புகளை மேம்படுத்தி, தொகுதி மக்கள் எளிதில் அணுகக்கூடிய தூய்மையான மக்கள் சேவையை வழங்கி வருகிறார்.
-              </p>
-            </div>
-          </div>
-        </div>
+      <p className="text-xs text-gray-600 leading-relaxed font-semibold px-4">
+        கிழக்கு நகரப் பகுதி மக்களின் அடிப்படைத் தேவைகளான குடிநீர், சாலை வசதிகள் மற்றும் உள்கட்டமைப்புப் பிரச்சினைகளைத் தீர்க்கவும், பொதுமக்களுக்கு எளிதில் அணுகக்கூடிய தூய்மையான மக்கள் சேவையை வழங்கிடவும் முன்னின்று செயல்படுகிறார்.
+      </p>
+    </div>
+  </div>
+</div>
 
       </div>
     </section>

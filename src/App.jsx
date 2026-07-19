@@ -1,17 +1,32 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import CardsSection from "./components/CardsSection";
-import ContactSection from "./components/ContactSection"; // 🔹 This file contains your new complaint form code
+import ContactSection from "./components/ContactSection"; 
 import Vision from "./components/Vision";
 import Agenda from "./components/Agenda";
 import "./index.css";
 
+// 🔹 Separate Scroll Management Engine Component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Instantly resets window view coordinates back to the absolute origin top-left on path updates
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => {
   return (
     <Router>
+      {/* 🔹 Mount Scroll Controller right under the Router provider block */}
+      <ScrollToTop />
+      
       <div className="min-h-screen flex flex-col bg-[#fefbf9]">
         <Navbar />
         
@@ -33,7 +48,7 @@ const App = () => {
             <Route path="/vision" element={<Vision />} />
             <Route path="/agenda" element={<Agenda />} />
             
-            {/* 🔹 Maps the Navbar's "/complaint" link directly to your complaint form page */}
+            {/* Maps the Navbar's "/complaint" link directly to your complaint form page */}
             <Route path="/complaint" element={<ContactSection />} />
           </Routes>
         </main>
