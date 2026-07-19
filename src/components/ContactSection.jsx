@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { User, Phone, Mail, MapPin, AlertTriangle, Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { User, Phone, Mail, MapPin, AlertTriangle, Send, CheckCircle2, MessageSquare, Edit3 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const GrievanceFormSection = () => {
@@ -14,7 +14,8 @@ const GrievanceFormSection = () => {
     ward: "", 
     constituency: "", 
     street: "",
-    complaint: ""
+    complaintType: "", // 🔹 Pre-defined category selection hook
+    complaint: ""      // 🔹 Detailed specifications
   });
 
   const handleWardChange = (e) => {
@@ -40,7 +41,7 @@ const GrievanceFormSection = () => {
   };
 
   const triggerWhatsAppFallback = () => {
-    const WHATSAPP_NUMBER = "+919344330970"; 
+    const WHATSAPP_NUMBER = "919344330970"; 
     
     const messageText = 
 `*புதிய புகார் பதிவு (Grievance Portal)*
@@ -51,6 +52,7 @@ const GrievanceFormSection = () => {
 *வார்டு எண்:* ${formData.ward || "Not Selected"}
 *தொகுதி:* ${formData.constituency || "Not Derived"}
 *தெரு விவரம்:* ${formData.street || "Not Provided"}
+*புகார் வகை:* ${formData.complaintType || "Not Selected"}
 *புகார் விவரம்:* ${formData.complaint || "Not Provided"}
 --------------------------------------------`;
 
@@ -71,7 +73,7 @@ const GrievanceFormSection = () => {
           console.log("EmailJS Success:", result.text);
           setIsSubmitted(true);
           setIsSending(false);
-          setFormData({ name: "", phone: "", email: "", ward: "", constituency: "", street: "", complaint: "" });
+          setFormData({ name: "", phone: "", email: "", ward: "", constituency: "", street: "", complaintType: "", complaint: "" });
       })
       .catch((error) => {
           console.error("EmailJS Failed. Routing via WhatsApp Desk:", error);
@@ -82,43 +84,43 @@ const GrievanceFormSection = () => {
   };
 
   return (
-    <section id="grievance-portal" className="relative w-full bg-gradient-to-b from-[#fefbf9] via-[#fef6f1] to-[#fcf0e7] py-20 md:py-28 border-t border-b border-orange-100/60 overflow-hidden">
+    <section id="grievance-portal" className="relative w-full bg-gradient-to-b from-[#fefbf9] via-[#fef6f1] to-[#fcf0e7] py-16 md:py-28 border-t border-b border-orange-100/60 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:30px_30px]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header Layout Block */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#c8102e]/5 to-[#f05a28]/5 border border-orange-200/40 backdrop-blur-sm mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c8102e]" />
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#c8102e]">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-[#c8102e]">
               பொதுமக்கள் குறைதீர்க்கும் மையம் / Public Grievance Portal
             </span>
           </div>
-          <h3 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight leading-none">
+          <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-gray-900 tracking-tight leading-none">
             குறைகளைப் பதிவு செய்ய
           </h3>
-          <p className="text-sm md:text-base text-gray-500 font-semibold tracking-widest uppercase mt-3">
+          <p className="text-xs sm:text-sm md:text-base text-gray-500 font-semibold tracking-widest uppercase mt-3">
             Ward & Constituency Action Center
           </p>
-          <div className="w-12 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28] mx-auto mt-6 rounded-full" />
+          <div className="w-12 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28] mx-auto mt-5 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
           {/* LEFT COLUMN: Structural Guidelines Panel */}
-          <div className="lg:col-span-4 bg-white/60 border border-orange-200/20 backdrop-blur-sm rounded-2xl p-6 space-y-6">
+          <div className="lg:col-span-4 bg-white/60 border border-orange-200/20 backdrop-blur-sm rounded-2xl p-5 sm:p-6 space-y-6">
             <div>
-              <h4 className="text-lg font-black text-gray-900">முறையான உள்கட்டமைப்பு மாற்றம்</h4>
-              <p className="text-xs text-gray-500 font-bold tracking-wide uppercase mt-0.5">Transparent Resolution Tracking</p>
+              <h4 className="text-base sm:text-lg font-black text-gray-900">முறையான உள்கட்டமைப்பு மாற்றம்</h4>
+              <p className="text-[11px] text-gray-500 font-bold tracking-wide uppercase mt-0.5">Transparent Resolution Tracking</p>
             </div>
             
-            <p className="text-xs text-gray-600 leading-relaxed font-medium">
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
               உங்கள் தெருக்களில் உள்ள சாக்கடை வசதி, குடிநீர் பற்றாக்குறை, சாலை பழுதுகள் அல்லது தெருவிளக்கு மின்பிரச்சினைகளை ஆதாரப் படங்களுடன் பதிவிடவும். பெறப்படும் புகார்கள் அனைத்தும் நேரடியாக சரிபார்க்கப்படும்.
             </p>
 
             <div className="p-4 rounded-xl bg-orange-50/50 border border-orange-100 space-y-3">
-              <span className="text-[11px] font-black uppercase text-[#c8102e] tracking-wider block">
+              <span className="text-[10px] sm:text-[11px] font-black uppercase text-[#c8102e] tracking-wider block">
                 தொகுதி எல்லை வழிகாட்டி / Jurisdiction Guide
               </span>
               <ul className="text-[11px] text-gray-600 space-y-2 font-medium">
@@ -132,44 +134,37 @@ const GrievanceFormSection = () => {
                 </li>
               </ul>
             </div>
-
-            <div className="pt-4 border-t border-orange-100">
-              <div className="flex items-center gap-2 text-xs text-gray-400 font-bold uppercase tracking-wider">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>2026 மாற்றத்தை நோக்கி</span>
-              </div>
-            </div>
           </div>
 
           {/* RIGHT COLUMN: Grievance Form Panel Block */}
-          <div className="lg:col-span-8">
-            <div className="bg-white rounded-3xl p-6 md:p-10 border border-orange-200/30 shadow-xl shadow-orange-900/[0.01] relative overflow-hidden">
+          <div className="lg:col-span-8 w-full">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 border border-orange-200/30 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28]" />
               
               {isSubmitted ? (
-                <div className="text-center py-12 space-y-4 animate-fade-in">
-                  <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto border border-emerald-100 shadow-sm">
+                <div className="text-center py-10 space-y-4 animate-fade-in">
+                  <div className="w-14 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto border border-emerald-100 shadow-sm">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h4 className="text-2xl font-black text-gray-900">புகார் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது!</h4>
-                  <p className="text-sm text-gray-500 max-w-md mx-auto">
+                  <h4 className="text-xl sm:text-2xl font-black text-gray-900">புகார் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது!</h4>
+                  <p className="text-xs sm:text-sm text-gray-500 max-w-md mx-auto px-2">
                     Thank you. Your grievance report has been accurately logged for review. Our local field representatives will contact you shortly.
                   </p>
                   <button 
                     onClick={() => setIsSubmitted(false)}
-                    className="mt-4 px-6 py-2 rounded-full bg-gray-900 text-white text-xs font-bold tracking-wider uppercase hover:bg-gray-800 transition"
+                    className="mt-4 px-6 py-2.5 rounded-full bg-gray-900 text-white text-xs font-bold tracking-wider uppercase hover:bg-gray-800 transition"
                   >
                     மீண்டும் பதிவு செய்ய / File Another
                   </button>
                 </div>
               ) : (
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 text-left">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 text-left">
                   
                   <input type="hidden" name="to_email" value="karurnorthwest.tvk@gmail.com" />
                   <input type="hidden" name="to_name" value="TVK Administration Desk" />
 
                   {/* Row 1: Name & Phone Number */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
                         <User className="w-3.5 h-3.5 text-gray-400" /> உங்கள் பெயர் / Your Name *
@@ -181,7 +176,7 @@ const GrievanceFormSection = () => {
                         placeholder="Enter full name"
                         value={formData.name}
                         onChange={handleTextChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                       />
                     </div>
                     
@@ -196,13 +191,13 @@ const GrievanceFormSection = () => {
                         placeholder="Enter 10 digit number"
                         value={formData.phone}
                         onChange={handleTextChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                       />
                     </div>
                   </div>
 
                   {/* Row 2: Email Address & Ward Select */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
                         <Mail className="w-3.5 h-3.5 text-gray-400" /> மின்னஞ்சல் முகவரி / Email Address *
@@ -214,7 +209,7 @@ const GrievanceFormSection = () => {
                         placeholder="name@example.com"
                         value={formData.email}
                         onChange={handleTextChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                       />
                     </div>
 
@@ -227,7 +222,7 @@ const GrievanceFormSection = () => {
                         name="ward_number"
                         value={formData.ward}
                         onChange={handleWardChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition-all cursor-pointer"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm cursor-pointer"
                       >
                         <option value="">-- Select Ward --</option>
                         <option value="12">Ward 12 / வார்டு 12</option>
@@ -251,7 +246,7 @@ const GrievanceFormSection = () => {
                       readOnly
                       placeholder="Auto-derived from selected ward"
                       value={formData.constituency}
-                      className="w-full px-4 py-3 bg-orange-50/30 border border-orange-100 rounded-xl text-sm text-gray-600 font-bold focus:outline-none cursor-not-allowed select-none"
+                      className="w-full px-4 py-3 bg-orange-50/30 border border-orange-100 rounded-xl text-xs sm:text-sm text-gray-600 font-bold focus:outline-none cursor-not-allowed select-none"
                     />
                   </div>
 
@@ -267,62 +262,93 @@ const GrievanceFormSection = () => {
                       placeholder="e.g. West Cross Street, Gandhi Nagar"
                       value={formData.street}
                       onChange={handleTextChange}
-                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition"
+                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                     />
                   </div>
 
-                  {/* Row 5: Detailed Problem Statement Textarea Container */}
+                  {/* 🔹 NEW Row 5: Core Categorized Problem Selection Desk */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                      <AlertTriangle className="w-3.5 h-3.5 text-gray-400" /> புகாரின் விவரம் / Complaint Details *
+                      <AlertTriangle className="w-3.5 h-3.5 text-gray-400" /> புகாரின் வகை / Type of Complaint *
                     </label>
-                    <textarea 
+                    <select 
                       required
-                      name="complaint"
-                      rows="4"
-                      placeholder="Please explicitly describe the infrastructure problem here..."
-                      value={formData.complaint}
+                      name="complaintType"
+                      value={formData.complaintType}
                       onChange={handleTextChange}
-                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition resize-none pb-2"
-                    />
+                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm cursor-pointer"
+                    >
+                      <option value="">-- Select Category --</option>
+                      <option value="Drinking Water Issue / குடிநீர் பற்றாக்குறை">குடிநீர் பற்றாக்குறை / Drinking Water Issue</option>
+                      <option value="Drainage & Sewage System / சாக்கடை கால்வாய் வசதி">சாக்கடை கால்வாய் வசதி / Drainage & Sewage System</option>
+                      <option value="Road Maintenance / சாலை பழுதுகள்">சாலை பழுதுகள் / Road Maintenance</option>
+                      <option value="Streetlight Malfunction / தெருவிளக்கு மின்பிரச்சினை">தெருவிளக்கு மின்பிரச்சினை / Streetlight Malfunction</option>
+                      <option value="Others">மற்றவை / Others (Explicitly specify below)</option>
+                    </select>
                   </div>
 
-                  {/* 🔹 Upper Level: Premium Classy Layout Positioning the Notice Box Above the Buttons */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full pt-2">
-                    {/* Left Spacer to keep layout balanced on desktop */}
-                    <div className="hidden sm:block" />
+                  {/* 🔹 Dynamic Form Expansion Block: Triggers ONLY if "Others" or a valid selection is chosen */}
+                  {(formData.complaintType === "Others" || formData.complaintType !== "") && (
+                    <div className="space-y-1.5 transition-all duration-300 animate-fade-in">
+                      <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
+                        <Edit3 className="w-3.5 h-3.5 text-gray-400" /> புகாரின் முழு விவரம் / Detailed Specifications *
+                      </label>
+                      <textarea 
+                        required={formData.complaintType === "Others"}
+                        name="complaint"
+                        rows="4"
+                        placeholder="தயவுசெய்து உங்கள் புகாரின் விரிவான விவரங்களை இங்கே பதிவிடவும்... / Please explicitly describe the infrastructure problem here..."
+                        value={formData.complaint}
+                        onChange={handleTextChange}
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition resize-none shadow-sm"
+                      />
+                    </div>
+                  )}
+
+                  {/* Structural Alignment Matrix & Fallback Controls */}
+                  <div className="pt-2 flex flex-col gap-3">
                     
-                    {/* Right Aligned Premium Notice Box pointing downward */}
-                    <div className="bg-emerald-50/60 border border-emerald-100/70 rounded-2xl p-3 flex items-start gap-2.5 shadow-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
+                      <div className="hidden sm:block" />
                       
-                      <div className="flex flex-col space-y-0.5 text-[10px] sm:text-[11px] font-bold text-emerald-700 leading-normal">
-                        <span>• புகார் தொடர்பான புகைப்படங்கள் ஏதேனும் இருந்தால் கீழே உள்ள வாட்ஸ்அப் (WhatsApp) மூலம் அனுப்பவும்.</span>
-                        <span className="text-emerald-600/80 font-semibold">• If you have any related images, please send them via WhatsApp below.</span>
+                      <div className="flex flex-col items-center justify-center w-full space-y-1">
+                        <div className="text-emerald-600 font-black text-xl sm:text-2xl select-none leading-none animate-pulse">
+                          ↓
+                        </div>
+
+                        {/* Premium Symmetrical Notice Box */}
+                        <div className="bg-emerald-50/60 border border-emerald-100/70 rounded-xl p-3 flex items-start gap-2.5 shadow-sm w-full">
+                          <div className="flex flex-col space-y-0.5 text-[10px] sm:text-[11px] font-bold text-emerald-700 leading-normal">
+                            <span>• புகார் தொடர்பான புகைப்படங்கள் ஏதேனும் இருந்தால் கீழே உள்ள வாட்ஸ்அப் (WhatsApp) மூலம் அனுப்பவும்.</span>
+                            <span className="text-emerald-600/80 font-semibold">• If you have any related images, please send them via WhatsApp.</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* 🔹 Lower Level: Main Action Buttons Row */}
-                  <div className="flex flex-col sm:flex-row items-center gap-4">
-                    {/* Left Side: Submit Online */}
-                    <button
-                      type="submit"
-                      disabled={isSending}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:flex-1 disabled:opacity-50"
-                    >
-                      <Send className="w-4 h-4" /> 
-                      {isSending ? "அனுப்பப்படுகிறது... / Sending..." : "இணையவழியே சமர்ப்பிக்க / Submit Online"}
-                    </button>
+                    {/* Action Execution Layer - Inverted for perfect mobile ergonomic finger reach */}
+                    <div className="flex flex-col-reverse sm:flex-row items-center gap-3 pt-1">
+                      {/* Left Side: Submit Online */}
+                      <button
+                        type="submit"
+                        disabled={isSending}
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:flex-1 disabled:opacity-50 transition"
+                      >
+                        <Send className="w-4 h-4" /> 
+                        {isSending ? "அனுப்பப்படுகிறது... / Sending..." : "இணையவழியே சமர்ப்பிக்க / Submit Online"}
+                      </button>
 
-                    {/* Right Side: Send via WhatsApp */}
-                    <button
-                      type="button"
-                      onClick={triggerWhatsAppFallback}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:flex-1 hover:bg-emerald-700 transition-colors"
-                    >
-                      <MessageSquare className="w-4 h-4" />
-                      வாட்ஸ்அப் மூலம் அனுப்ப / Send via WhatsApp
-                    </button>
+                      {/* Right Side (Primary Action on Mobile): Send via WhatsApp */}
+                      <button
+                        type="button"
+                        onClick={triggerWhatsAppFallback}
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md w-full sm:flex-1 hover:bg-emerald-700 transition"
+                      >
+                        <MessageSquare className="w-4 h-4" />
+                        வாட்ஸ்அப் மூலம் அனுப்ப / Send via WhatsApp
+                      </button>
+                    </div>
+
                   </div>
 
                 </form>
