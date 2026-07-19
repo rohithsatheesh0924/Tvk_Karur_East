@@ -14,8 +14,8 @@ const GrievanceFormSection = () => {
     ward: "", 
     constituency: "", 
     street: "",
-    complaintType: "", // 🔹 Pre-defined category selection hook
-    complaint: ""      // 🔹 Detailed specifications
+    complaintType: "", 
+    complaint: ""      
   });
 
   const handleWardChange = (e) => {
@@ -138,7 +138,7 @@ const GrievanceFormSection = () => {
 
           {/* RIGHT COLUMN: Grievance Form Panel Block */}
           <div className="lg:col-span-8 w-full">
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 border border-orange-200/30 shadow-xl relative overflow-hidden">
+            <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-10 border border-orange-200/30 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#f05a28]" />
               
               {isSubmitted ? (
@@ -176,7 +176,7 @@ const GrievanceFormSection = () => {
                         placeholder="Enter full name"
                         value={formData.name}
                         onChange={handleTextChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                       />
                     </div>
                     
@@ -191,7 +191,7 @@ const GrievanceFormSection = () => {
                         placeholder="Enter 10 digit number"
                         value={formData.phone}
                         onChange={handleTextChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                       />
                     </div>
                   </div>
@@ -209,7 +209,7 @@ const GrievanceFormSection = () => {
                         placeholder="name@example.com"
                         value={formData.email}
                         onChange={handleTextChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                       />
                     </div>
 
@@ -222,15 +222,15 @@ const GrievanceFormSection = () => {
                         name="ward_number"
                         value={formData.ward}
                         onChange={handleWardChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm cursor-pointer"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] focus:bg-white transition shadow-sm cursor-pointer"
                       >
-                        <option value="">-- Select Ward --</option>
-                        <option value="12">Ward 12 / வார்டு 12</option>
-                        <option value="13">Ward 13 / வார்டு 13</option>
-                        <option value="14">Ward 14 / வார்டு 14</option>
-                        <option value="16">Ward 16 / வார்டு 16</option>
-                        <option value="17">Ward 17 / வார்டு 17</option>
-                        <option value="18">Ward 18 / வார்டு 18</option>
+                        <option value="" className="text-gray-900">-- Select Ward --</option>
+                        <option value="12" className="text-gray-900">Ward 12 / வார்டு 12</option>
+                        <option value="13" className="text-gray-900">Ward 13 / வார்டு 13</option>
+                        <option value="14" className="text-gray-900">Ward 14 / வார்டு 14</option>
+                        <option value="16" className="text-gray-900">Ward 16 / வார்டு 16</option>
+                        <option value="17" className="text-gray-900">Ward 17 / வார்டு 17</option>
+                        <option value="18" className="text-gray-900">Ward 18 / வார்டு 18</option>
                       </select>
                     </div>
                   </div>
@@ -246,7 +246,7 @@ const GrievanceFormSection = () => {
                       readOnly
                       placeholder="Auto-derived from selected ward"
                       value={formData.constituency}
-                      className="w-full px-4 py-3 bg-orange-50/30 border border-orange-100 rounded-xl text-xs sm:text-sm text-gray-600 font-bold focus:outline-none cursor-not-allowed select-none"
+                      className="w-full px-4 py-3 bg-orange-50/30 border border-orange-100 rounded-xl text-xs sm:text-sm text-gray-800 font-bold focus:outline-none cursor-not-allowed select-none"
                     />
                   </div>
 
@@ -262,11 +262,11 @@ const GrievanceFormSection = () => {
                       placeholder="e.g. West Cross Street, Gandhi Nagar"
                       value={formData.street}
                       onChange={handleTextChange}
-                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm"
+                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] focus:bg-white transition shadow-sm"
                     />
                   </div>
 
-                  {/* 🔹 NEW Row 5: Core Categorized Problem Selection Desk */}
+                  {/* Row 5: Core Categorized Problem Selection Desk */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
                       <AlertTriangle className="w-3.5 h-3.5 text-gray-400" /> புகாரின் வகை / Type of Complaint *
@@ -276,18 +276,18 @@ const GrievanceFormSection = () => {
                       name="complaintType"
                       value={formData.complaintType}
                       onChange={handleTextChange}
-                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition shadow-sm cursor-pointer"
+                      className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] focus:bg-white transition shadow-sm cursor-pointer"
                     >
-                      <option value="">-- Select Category --</option>
-                      <option value="Drinking Water Issue / குடிநீர் பற்றாக்குறை">குடிநீர் பற்றாக்குறை / Drinking Water Issue</option>
-                      <option value="Drainage & Sewage System / சாக்கடை கால்வாய் வசதி">சாக்கடை கால்வாய் வசதி / Drainage & Sewage System</option>
-                      <option value="Road Maintenance / சாலை பழுதுகள்">சாலை பழுதுகள் / Road Maintenance</option>
-                      <option value="Streetlight Malfunction / தெருவிளக்கு மின்பிரச்சினை">தெருவிளக்கு மின்பிரச்சினை / Streetlight Malfunction</option>
-                      <option value="Others">மற்றவை / Others (Explicitly specify below)</option>
+                      <option value="" className="text-gray-900">-- Select Category --</option>
+                      <option value="Drinking Water Issue / குடிநீர் பற்றாக்குறை" className="text-gray-900">குடிநீர் பற்றாக்குறை / Drinking Water Issue</option>
+                      <option value="Drainage & Sewage System / சாக்கடை கால்வாய் வசதி" className="text-gray-900">சாக்கடை கால்வாய் வசதி / Drainage & Sewage System</option>
+                      <option value="Road Maintenance / சாலை பழுதுகள்" className="text-gray-900">சாலை பழுதுகள் / Road Maintenance</option>
+                      <option value="Streetlight Malfunction / தெருவிளக்கு மின்பிரச்சினை" className="text-gray-900">தெருவிளக்கு மின்பிரச்சினை / Streetlight Malfunction</option>
+                      <option value="Others" className="text-gray-900">மற்றவை / Others (Explicitly specify below)</option>
                     </select>
                   </div>
 
-                  {/* 🔹 Dynamic Form Expansion Block: Triggers ONLY if "Others" or a valid selection is chosen */}
+                  {/* Dynamic Form Expansion Block */}
                   {(formData.complaintType === "Others" || formData.complaintType !== "") && (
                     <div className="space-y-1.5 transition-all duration-300 animate-fade-in">
                       <label className="text-xs font-black text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
@@ -300,7 +300,7 @@ const GrievanceFormSection = () => {
                         placeholder="தயவுசெய்து உங்கள் புகாரின் விரிவான விவரங்களை இங்கே பதிவிடவும்... / Please explicitly describe the infrastructure problem here..."
                         value={formData.complaint}
                         onChange={handleTextChange}
-                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#f05a28] focus:bg-white transition resize-none shadow-sm"
+                        className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f05a28]/20 focus:border-[#f05a28] focus:bg-white transition resize-none shadow-sm"
                       />
                     </div>
                   )}
@@ -326,9 +326,8 @@ const GrievanceFormSection = () => {
                       </div>
                     </div>
 
-                    {/* Action Execution Layer - Inverted for perfect mobile ergonomic finger reach */}
+                    {/* Action Execution Layer */}
                     <div className="flex flex-col-reverse sm:flex-row items-center gap-3 pt-1">
-                      {/* Left Side: Submit Online */}
                       <button
                         type="submit"
                         disabled={isSending}
@@ -338,7 +337,6 @@ const GrievanceFormSection = () => {
                         {isSending ? "அனுப்பப்படுகிறது... / Sending..." : "இணையவழியே சமர்ப்பிக்க / Submit Online"}
                       </button>
 
-                      {/* Right Side (Primary Action on Mobile): Send via WhatsApp */}
                       <button
                         type="button"
                         onClick={triggerWhatsAppFallback}

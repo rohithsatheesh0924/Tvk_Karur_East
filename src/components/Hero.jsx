@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertTriangle, ShieldCheck, Clock, ArrowRight, Map } from "lucide-react";
+import { AlertTriangle, ShieldCheck, Clock, ArrowRight, Map, PhoneCall } from "lucide-react";
 
 const Hero = () => {
   // Seamlessly targets your updated Constituency Grievance Form Section ID
@@ -48,6 +48,21 @@ const Hero = () => {
             </h2>
           </div>
 
+          {/* 🔹 NEW Prominent Large Call-To-Action Hotline Section */}
+          <div className="bg-red-600/5 border border-red-500/10 rounded-2xl py-4 px-6 max-w-xl mx-auto shadow-inner group transition-all duration-300 hover:bg-red-600/10">
+            <a 
+              href="tel:+919344330970" 
+              className="flex flex-col items-center justify-center space-y-1"
+            >
+              <span className="text-[10px] sm:text-xs font-black text-[#c8102e] tracking-widest uppercase flex items-center gap-1.5">
+                <PhoneCall className="w-3.5 h-3.5 animate-bounce" /> புகார் பதிவு செய்ய அழைக்கவும் / Complaint Hotline
+              </span>
+              <span className="text-2xl sm:text-4xl font-black text-gray-900 tracking-wider group-hover:text-[#c8102e] transition-colors">
+                +91 9344330970
+              </span>
+            </a>
+          </div>
+
           {/* Symmetrical Structural Divider Line */}
           <div className="w-16 h-[3px] bg-gradient-to-r from-[#c8102e] to-[#ffd60a] mx-auto rounded-full" />
 
@@ -62,18 +77,18 @@ const Hero = () => {
           </div>
 
           {/* Premium Executive Call-To-Action Button Row (Completely Static) */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 w-full max-w-md mx-auto sm:max-w-none">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-2 w-full max-w-md mx-auto sm:max-w-none">
             <a
               href="#grievance-portal"
               onClick={handleScrollToGrievance}
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md text-center transition-shadow duration-200 hover:shadow-lg"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#ffd60a] to-[#fbc02d] text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md text-center transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
               <AlertTriangle className="w-4 h-4 text-gray-900 flex-shrink-0" /> குறைதீர்க்கும் படிவம் / Register Grievance
             </a>
 
             <a
               href="/vision"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-gray-700 font-black text-xs sm:text-sm tracking-wider uppercase rounded-full border border-gray-200 shadow-sm text-center transition-colors duration-200 hover:bg-gray-50"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-gray-700 font-black text-xs sm:text-sm tracking-wider uppercase rounded-full border border-gray-200 shadow-sm text-center transition-all duration-200 hover:bg-gray-50 hover:-translate-y-0.5"
             >
               கழகக் கொள்கைகள் / Our Vision <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
             </a>
